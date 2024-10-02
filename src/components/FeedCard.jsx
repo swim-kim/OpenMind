@@ -2,7 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import FeedCardQuestion from './FeedCardQuestion';
 import DefaultImg from '../assets/default/default_profile.png';
-
+import Icon from '../components/Icon';
+import { ThumbsDown, ThumbsUp } from './Reaction/Reaction';
+import Badge from './Badge/Badge'
 const FeedCardContainer = styled.div`
   width: 620px;
   padding: 32px;
@@ -86,13 +88,16 @@ const FeedCardReactionContainer = styled.div`
   align-items: flex-start;
   gap: 32px;
 `;
+
+
 const FeedCard = () => {
+  const questionStatus = "answered";
+
   return (
     <FeedCardContainer>
       <FeedCardBox>
         <FeedCardButtonWrapper>
-          <div>답변완료</div>
-          <div>더보기</div>
+          <Badge status={questionStatus} />
         </FeedCardButtonWrapper>
         <FeedCardQuestion />
         <FeedCardAnswerContainer>
@@ -109,8 +114,8 @@ const FeedCard = () => {
         </FeedCardAnswerContainer>
         <FeedCardLine />
         <FeedCardReactionContainer>
-          <div>좋아요</div>
-          <div>싫어요</div>
+          <ThumbsUp />
+          <ThumbsDown />
         </FeedCardReactionContainer>
       </FeedCardBox>
     </FeedCardContainer>

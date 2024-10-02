@@ -7,10 +7,10 @@ function Router() {
 		<BrowserRouter>
 			<Routes>
 				<Route path="/questionlist" element={<QuestionListPage />} />
-				<Route path="/feedCard" element={<FeedCard/>} />
+				<Route path="/feedCard" element={<FeedCard />} />
 			</Routes>
 		</BrowserRouter>
 	);
 
-}
+} 
 export default Router;
