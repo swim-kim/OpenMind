@@ -1,0 +1,21 @@
+.reaction-icon {
+  fill: var(--gray-40);
+  color: var(--gray-40);
+  margin-right: 8px;
+}
+
+.reaction-icon.liked {
+  fill: var(--blue-50);
+  color: var(--blue-50);
+}
+
+.reaction-icon.disliked {
+  fill: var(--gray-60);
+  color: var(--gray-60);
+}
+
+.reaction-button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
