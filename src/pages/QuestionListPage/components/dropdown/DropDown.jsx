@@ -4,7 +4,7 @@ import { OptionBox, OptionText, Option } from "./Options";
 import styled from "styled-components";
 import { ReactComponent as upArrow } from "../../../../assets/image/upArrow.svg";
 import { ReactComponent as downArrow } from "../../../../assets/image/downArrow.svg";
-
+import { createPortal } from "react-dom";
 
 const DropDownText = styled.div`
 	flex: 1 0 0;
@@ -39,17 +39,14 @@ const DropDown = styled.div`
 	background: var(--Grayscale-10, #fff);
 `;
 
-
 const DropDownWrapper = styled.div`
 	display: flex;
 	width: 79px;
 	flex-direction: column;
 	align-items: flex-start;
 	gap: 4px;
+	position: relative;
 `;
-
-const DropDownComponent = {}
-
 
 const CombinedDropDown = () => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -60,23 +57,38 @@ const CombinedDropDown = () => {
 	const handleChangeChoice = (e) => {
 		console.log(e.target.textContent);
 		setChoice(e.target.textContent);
-		setIsOpen(false)
+		setIsOpen(false);
 	};
 	return (
-		<DropDownWrapper>
-			<DropDown onClick={handleToggle}>
-				<DropDownText>{choice}</DropDownText>  
-				{isOpen ? <UpArrowIcon /> : <DownArrowIcon />}
-			</DropDown>
-			<OptionBox $isOpen={isOpen}>
-				<Option>
-					<OptionText value={"이름순"} $choice={choice} onClick={handleChangeChoice}>이름순</OptionText>
-				</Option>
-				<Option>
-					<OptionText value={"최신순"} $choice={choice} onClick={handleChangeChoice}>최신순</OptionText>
-				</Option>
-			</OptionBox>
-		</DropDownWrapper>
+		<>
+			<DropDownWrapper>
+				<DropDown onClick={handleToggle}>
+					<DropDownText>{choice}</DropDownText>
+					{isOpen ? <UpArrowIcon /> : <DownArrowIcon />}
+				</DropDown>
+				<h1>hello</h1>
+				<OptionBox $isOpen={isOpen}>
+					<Option>
+						<OptionText
+							value={"이름순"}
+							$choice={choice}
+							onClick={handleChangeChoice}
+						>
+							이름순
+						</OptionText>
+					</Option>
+					<Option>
+						<OptionText
+							value={"최신순"}
+							$choice={choice}
+							onClick={handleChangeChoice}
+						>
+							최신순
+						</OptionText>
+					</Option>
+				</OptionBox>
+			</DropDownWrapper>
+		</>
 	);
 };
 

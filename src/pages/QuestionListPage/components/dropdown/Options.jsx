@@ -34,8 +34,8 @@ export const OptionBox = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	// position: absolute;
-	bottom: -72px;
+	position: absolute;
+	top: 42px;
 	border-radius: 8px;
 	border: 1px solid var(--Grayscale-30, #cfcfcf);
 	background: var(--Grayscale-10, #fff);
