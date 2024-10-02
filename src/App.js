@@ -7,6 +7,7 @@ import {
 } from "./components/Buttonshare/Buttonshare.jsx";
 import { FloatingButton } from "./components/Buttonfloating/Buttonfloating.jsx";
 
+
 function App() {
   useEffect(() => {
     if (window.Kakao) {
