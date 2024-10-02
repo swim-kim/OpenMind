@@ -54,6 +54,10 @@ const FeedCardAnswerWriter = styled.div`
   font-size: 18px;
   font-weight: 400;
   line-height: 24px; 
+
+  @media (max-width: 767px) {
+    font-size: 16px;
+  }
 `;
 const FeedCardAnswerTime = styled.div`
   color: var(--Grayscale-40, #818181);
