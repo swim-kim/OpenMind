@@ -4,7 +4,7 @@ import { OptionBox, OptionText, Option } from "./Options";
 import styled from "styled-components";
 import { ReactComponent as upArrow } from "../../../../assets/image/upArrow.svg";
 import { ReactComponent as downArrow } from "../../../../assets/image/downArrow.svg";
-import { createPortal } from "react-dom";
+
 
 const DropDownText = styled.div`
 	flex: 1 0 0;
@@ -66,7 +66,6 @@ const CombinedDropDown = () => {
 					<DropDownText>{choice}</DropDownText>
 					{isOpen ? <UpArrowIcon /> : <DownArrowIcon />}
 				</DropDown>
-				<h1>hello</h1>
 				<OptionBox $isOpen={isOpen}>
 					<Option>
 						<OptionText
