@@ -1,14 +1,13 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css");
 
 :root {
-	/* Gray scale */
-	--gray-60: #000000;
-	--gray-50: #515151;
-	--gray-40: #454c53;
-	--gray-30: #818181;
-	--gray-20: #cfcfcf;
-	--gray-10: #ffffff;
-
+    /* Gray scale */
+    --gray-60: #000000;
+    --gray-50: #515151;
+    --gray-40: #454c53;
+    --gray-30: #818181;
+    --gray-20: #CFCFCF;
+    --gray-10: #FFFFFF;
 
     /* Brown  */
     --brown-50: #341909;
@@ -32,10 +31,9 @@
 }
 
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	background: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html {
