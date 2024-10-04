@@ -3,6 +3,10 @@ import styled from "styled-components";
 import "../styles/global.css";
 
 const StyledTextArea = styled.textarea`
+  box-sizing: border-box;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
   width: 100%;
   height: 100%;
   background-color: var(--gray-20);
@@ -10,7 +14,7 @@ const StyledTextArea = styled.textarea`
   padding: 16px;
   border: none;
   gap: 10px;
-  color: var(--gray-60)
+  color: var(--gray-60);
 
   &:focus {
     outline: 1px solid var(--brown-40);
