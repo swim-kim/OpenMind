@@ -14,7 +14,7 @@ function QuestionListPage() {
 	const fetchApi = async () => {
 		// 파라미터로 현재 원하느 페이지 정보와, 페이지당 개수 (limit)  전달해서 api호출시 query로 반영 해줘야하는 코드가 필요함
 		console.log("limit,page", limit, page);
-		const data = await getItems(limit, page); // 8,1 limit, offset
+		const data = await getItems(limit, page); // 8,8 limit, offset
 		setCardList(data.results);
 		console.log("data.count", data.count);
 		setTotalPageNum(Math.ceil(data.count / limit));
@@ -22,21 +22,36 @@ function QuestionListPage() {
 	};
 
 	useEffect(() => {
-		fetchApi(); // 처음 api보낼때 1페이지기준으로 8개 받아오도록 되어있습니다. 2페이지 기준으로 줘
-		// console.log(fetchData);
-	}, [page]);
+		fetchApi(); // 처음 api보낼때 1페이지기준으로 8개 받아오도록 되어있음. 2페이지 기준으로 줘
+	}, [page, limit]);
 
 	const onPageChange = (pageNumber) => {
 		setPage(pageNumber);
 	};
+
+	const handleResize = () => {
+		if (window.innerWidth < 769) {
+			setLimit(6); // 화면 크기가 768px 이하일 때 limit을 6으로 설정
+		} else {
+			setLimit(8); // 그렇지 않으면 기본값인 8로 설정
+		}
+	};
+
+	useEffect(() => {
+		handleResize();
+		window.addEventListener("resize", handleResize);
+		return () => {
+			window.removeEventListener("resize", handleResize);
+		};
+	}, []);
 
 	return (
 		<>
 			<DropDown />
 			<ArrayCard cardList={cardList} />
 			<PaginationBar
-				totalPageNum={totalPageNum} // 전체 페이지 개수
-				activePageNum={page} // 현재 활성화된 페이지
+				totalPageNum={totalPageNum}
+				activePageNum={page}
 				onPageChange={onPageChange}
 			/>
 		</>

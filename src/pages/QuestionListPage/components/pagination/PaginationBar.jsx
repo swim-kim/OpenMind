@@ -4,8 +4,25 @@ import { ReactComponent as RightArrow } from "../../../../assets/icon/arrow-righ
 
 
 
-const paginationButton = styled.div`
-  
+const PaginationButton = styled.button`
+  color: ${({ isActive })=> (isActive ? 'var(--Brown-40, #542F1A)' : 'var(--Grayscale-40, #818181)')};
+  text-align: center;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Actor;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 25px; /* 125% */;
+  background: none; /* 기본 배경 제거 */
+  border: none; /* 기본 테두리 제거 */
+  padding: 5px 10px; /* 패딩 추가 */
+  margin: 0 5px; /* 버튼 간격 추가 */
+  &.active {
+    /* 활성화된 버튼에 대한 추가 스타일 */
+    font-weight: bold; /* 예: 글씨를 볼드체로 */
+  &:disabled {
+    cursor: not-allowed;
+  }
 `;
 
 const PaginationBar = ({ totalPageNum, activePageNum, onPageChange }) => {
@@ -37,31 +54,34 @@ const PaginationBar = ({ totalPageNum, activePageNum, onPageChange }) => {
 
 	return (
 		<div>
-			<button
+			<PaginationButton
 				className="paginationButton"
+        isActive={activePageNum > 1}
 				disabled={activePageNum === 1}
 				onClick={() => onPageChange(activePageNum - 1)}
 			>
 				&lt;
-			</button>
+			</PaginationButton>
 			{pages.map((page) => (
-				<button
+				<PaginationButton
 					key={page}
 					className={`paginationButton ${
 						activePageNum === page ? "active" : ""
 					}`}
+          isActive={activePageNum === page}
 					onClick={() => onPageChange(page)}
 				>
 					{page}
-				</button>
+				</PaginationButton>
 			))}
-			<button
+			<PaginationButton
 				className="paginationButton"
+        isActive={activePageNum < totalPageNum}
 				disabled={activePageNum === totalPageNum}
 				onClick={() => onPageChange(activePageNum + 1)}
 			>
 				&gt;
-			</button>
+			</PaginationButton>
 		</div>
 	);
 };

@@ -14,6 +14,33 @@ const UserCardBox = styled.div`
 	border-radius: 16px;
 	border: 1px solid var(--Grayscale-40, #818181);
 	background: var(--Grayscale-10, #fff);
+	@media (max-width: 950px) {
+		width: 186px;
+		height: 187px;
+		padding: 20px;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: flex-start;
+		flex: 1 0 0;
+  }
+	@media (max-width: 768px) {
+		display: flex;
+		width: 220px;
+		height: 187px;
+		padding: 20px;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: flex-start;
+	}
+	@media (max-width:375px) {
+    display: flex;
+		width: 155.5px;
+		padding: 16px;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: flex-start;
+		align-self: stretch;
+  }
 `;
 
 // Profile // Photo 부분 - 이미지 이클립스 wrapper 의 부모 로 존재
