@@ -1,37 +1,107 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./Reaction.css";
+import { ReactComponent as ThumbsupSVG } from "../../assets/reaction/thumbs-up.svg";
+import { ReactComponent as ThumbsdownSVG } from "../../assets/reaction/thumbs-down.svg";
 
-import { ReactComponent as ThumbsDownIcon } from '../../assets/figma.named.svg/icon-thumbs-down.svg';
-import { ReactComponent as ThumbsUpIcon } from '../../assets/figma.named.svg/icon-thumbs-up.svg';
-import { ReactComponent as ThumbsDown2Icon } from '../../assets/figma.named.svg/icon-thumbs-down-2.svg';
-import { ReactComponent as ThumbsUp2Icon } from '../../assets/figma.named.svg/icon-thumbs-up-2.svg';
+export const ThumbsUp = () => {
+  const [likeCount, setLikeCount] = useState(0);
+  const [like, setLike] = useState(false);
+  const [dislike, setDislike] = useState(false);
 
-import { ReactionContainer, ReactionItem, ReactionIcon, ReactionText } from './Reaction.styles';
+  useEffect(() => {
+    const fetchLikes = async () => {
+      try {
+        const questionId = 14077;
+        const response = await axios.get(
+          `https://openmind-api.vercel.app/10-1/questions/${questionId}/`
+        );
+        setLikeCount(response.data.like);
+      } catch (error) {
+        console.error("좋아요 수를 가져오는데 실패햇습니다.", error);
+      }
+    };
 
-// React component
-const Reaction = () => {
+    fetchLikes();
+  }, []);
+
+  const handleLike = async () => {
+    if (!like) {
+      try {
+        const questionId = 14077;
+        const response = await axios.post(
+          `https://openmind-api.vercel.app/10-1/questions/${questionId}/reaction/`,
+          { type: "like" },
+          { headers: { "Content-Type": "application/json" } }
+        );
+        setLikeCount(response.data.like);
+        setLike(true);
+
+        if (dislike) {
+          setDislike(false);
+        }
+      } catch (error) {
+        console.error("좋아요 추가에 실패했습니다.", error);
+      }
+    }
+  };
+
   return (
-    <ReactionContainer>
-      <ReactionItem>
-        <ReactionIcon as={ThumbsDownIcon} />
-        <ReactionText color="#818181ff">싫어요</ReactionText>
-      </ReactionItem>
-
-      <ReactionItem>
-        <ReactionIcon as={ThumbsUpIcon} />
-        <ReactionText color="#818181ff">좋아요</ReactionText>
-      </ReactionItem>
-
-      <ReactionItem>
-        <ReactionIcon as={ThumbsDown2Icon} />
-        <ReactionText color="#000000ff">싫어요</ReactionText>
-      </ReactionItem>
-
-      <ReactionItem>
-        <ReactionIcon as={ThumbsUp2Icon} />
-        <ReactionText color="#1877f2ff">좋아요 12</ReactionText>
-      </ReactionItem>
-    </ReactionContainer>
+    <div onClick={handleLike} className="reaction-button">
+      <ThumbsupSVG className={`reaction-icon ${like ? "liked" : ""}`} />
+      <span className={`reaction-icon ${like ? "liked" : ""}`}>
+        좋아요 {likeCount}
+      </span>
+    </div>
   );
 };
 
-export default Reaction;
+export const ThumbsDown = () => {
+  const [dislikeCount, setDisLikeCount] = useState(0);
+  const [dislike, setDislike] = useState(false);
+  const [like, setLike] = useState(false);
+
+  useEffect(() => {
+    const fetchDisLikes = async () => {
+      try {
+        const questionId = 14077;
+        const response = await axios.get(
+          `https://openmind-api.vercel.app/10-1/questions/${questionId}/`
+        );
+        setDisLikeCount(response.data.dislike);
+      } catch (error) {
+        console.error("싫어요 수를 가져오는데 실패햇습니다.", error);
+      }
+    };
+
+    fetchDisLikes();
+  }, []);
+
+  const handleDislike = async () => {
+    const questionId = 14077;
+    try {
+      if (!dislike) {
+        await axios.post(
+          `https://openmind-api.vercel.app/10-1/questions/${questionId}/reaction/`,
+          { type: "dislike" }
+        );
+        setDisLikeCount((prev) => prev + 1);
+        setDislike(true);
+
+        if (like) {
+          setLike(false);
+        }
+      }
+    } catch (error) {
+      console.error("싫어요 변경에 실패했습니다.", error);
+    }
+  };
+  return (
+    <div onClick={handleDislike} className="reaction-button">
+      <ThumbsdownSVG className={`reaction-icon ${dislike ? "disliked" : ""}`} />
+      <span className={`reaction-icon ${dislike ? "disliked" : ""}`}>
+        싫어요 {dislikeCount}
+      </span>
+    </div>
+  );
+};

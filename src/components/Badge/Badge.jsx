@@ -1,18 +1,15 @@
-import React from 'react';
-import { BadgeContainer, BadgeText } from './Badge.styles';
+import React from "react";
+import "./Badge.css";
 
-const Badge = ({ children }) => {
+const Badge = ({ status = "unanswered" }) => {
+  const badgeClass = `badge ${status === "answered" ? "answered" : "unanswered"
+    }`;
+
   return (
-    <BadgeContainer>
-      <BadgeText>{children}</BadgeText>
-    </BadgeContainer>
+    <span className={badgeClass}>
+      {status === "answered" ? "답변 완료" : "미답변"}
+    </span>
   );
 };
 
-const SampleBadge = () => {
-  return (
-    <Badge>답변 완료</Badge>
-  );
-};
-
-export default SampleBadge;
+export default Badge;
