@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { ReactComponent as LeftArrow } from "../../../../assets/icon/Arrow-left.svg";
-import { ReactComponent as RightArrow } from "../../../../assets/icon/arrow-right.svg";
 
 
 

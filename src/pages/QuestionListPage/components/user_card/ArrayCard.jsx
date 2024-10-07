@@ -44,7 +44,6 @@ const ArrayCard = ({ cardList }) => {
 	return (
 		<>
 			<ArrayContainer>
-				{/* TODO: 페이지 네이션 다 만들면 수정해야 할 것 */}
 				<ArrayCardLine>
 					{console.log("sss", cardList.slice(0, 4))}
 					{cardList.map((el) => {
@@ -60,21 +59,6 @@ const ArrayCard = ({ cardList }) => {
 						);
 					})}
 				</ArrayCardLine>
-				{/* <ArrayCardLine>
-					{console.log("ttt", cardList.slice(4, 8))}
-					{cardList.slice(4, 8).map((el) => {
-						return (
-							<UserCard
-								key={el.id}
-								id={el.id}
-								name={el.name}
-								imageSource={el.imageSource}
-								questionCount={el.questionCount}
-                param={id}
-							></UserCard>
-						);
-					})}
-				</ArrayCardLine> */}
 			</ArrayContainer>
 		</>
 	);
