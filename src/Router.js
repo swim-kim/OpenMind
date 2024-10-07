@@ -10,9 +10,9 @@ function Router() {
 		<BrowserRouter>
 			<Routes>
 				<Route path="/feedCard" element={<FeedCard />} />
-				<Route path="/post" element={<PostQuestionPage />} />
-				<Route path="/List" element={<QuestionListPage />} />
-				<Route path="/cards/:id" element={ArrayCard} />
+				
+				<Route path="/list" element={<QuestionListPage />} />
+				<Route path="/post/:subjectId" element={<PostQuestionPage />} />
 			</Routes>
 		</BrowserRouter>
 	);

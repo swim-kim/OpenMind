@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import FeedCardQuestion from './FeedCardQuestion';
-import DefaultImg from '../assets/default/default_profile.png';
+import DefaultImg from '../assets/default/defaultProfile.svg';
 import { ThumbsDown, ThumbsUp } from './Reaction/Reaction';
 import Badge from './Badge/Badge'
 
@@ -63,7 +63,6 @@ const FeedCardAnswerWriter = styled.div`
 `;
 const FeedCardAnswerTime = styled.div`
   color: var(--Grayscale-40, #818181);
-  font-feature-settings: 'liga' off, 'clig' off;
   font-size: 14px;
   font-weight: 500;
   line-height: 18px;
@@ -129,14 +128,12 @@ const FeedCard = ({ question, subjectId }) => {
             </FeedCardAnswerBox>
           </FeedCardAnswerContainer>
         ) : (
-          <FeedCardAnswerContainer>
-            
-          </FeedCardAnswerContainer>
+          <></>
         )}
         <FeedCardLine />
         <FeedCardReactionContainer>
-          <ThumbsUp />
-          <ThumbsDown />
+          <ThumbsUp question={question} />
+          <ThumbsDown question={question} />
         </FeedCardReactionContainer>
       </FeedCardBox>
     </FeedCardContainer>

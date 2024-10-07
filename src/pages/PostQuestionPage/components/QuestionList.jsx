@@ -35,30 +35,58 @@ const QuestionCountText = styled.div`
   font-weight: 400;
   line-height: 25px; 
 `;
+const Observer = styled.div`
+    height:10px;
+`;
 
 function QuestionList( { subjectId } ) {
     const [questionList, setQuestionList] = useState([]);
     const [response, setResponse] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [page, setPage] = useState(0);
+    const [limit] = useState(10);
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const fetchSortedData = useCallback(async () => {
         try {
-            setLoading(true); 
-            const questions = await getQuestions(subjectId); 
-            setQuestionList(questions.results);
+            setIsLoading(true); 
+            const questions = await getQuestions(subjectId, limit, page*limit ); 
+            setQuestionList((prev) => [...prev, ...questions.results]);
             setResponse(questions);
+            console.log(limit)
         } catch (err) {
             setError(err); 
         } finally {
-            setLoading(false); 
+            setIsLoading(false); 
         }
-    }, []); 
+    }, [page, limit]); 
+
+    const handleObserver = (entries) => {
+        const target = entries[0];
+        if(target.isIntersecting && !isLoading){
+            setPage((prevPage) => prevPage + 1);
+        }
+    };
+    useEffect(() => {
+        const observer = new IntersectionObserver(handleObserver, {
+            threshold: 0, 
+        });
+
+        const observerTarget = document.getElementById('observer');
+        if (observerTarget) {
+            observer.observe(observerTarget);
+        }
+
+        return () => {
+            if (observerTarget) {
+                observer.unobserve(observerTarget);
+            }
+        };
+    }, []);
 
     useEffect(() => {
         fetchSortedData(); 
     }, [fetchSortedData]);
 
-  
     return (
         <QuestionListContainer>
             <QuestionCountContainer>
@@ -68,7 +96,7 @@ function QuestionList( { subjectId } ) {
             {questionList.map((question) => (
                 <FeedCard key={question.id} question={question} subjectId={subjectId}/>
             ))}
-
+            <Observer id='observer'/>
         </QuestionListContainer>
     );
 }

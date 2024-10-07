@@ -1,8 +1,9 @@
 import React, { useCallback, useState,useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import LogoImg from '../../assets/default/logo.svg';
 import BackgroundImg from '../../assets/default/background.svg';
-import ProfileImg from '../../assets/default/default_profile.png';
+import ProfileImg from '../../assets/default/defaultProfile.svg';
 import {
     FacebookShareButton,
     KakaoShareButton,
@@ -71,22 +72,23 @@ const ShareWrapper = styled.div`
 
 
 const PostQuestionPage = () => {
-
-    const subjectId = 8405;
+    const { subjectId } = useParams();
     const [subject, setSubject] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const fetchSortedData = useCallback(async () => {
+        console.log(subjectId);
         try {
             setLoading(true); 
             const response = await getSubject(subjectId);
+            
             setSubject(response);
         } catch (err) {
             setError(err); 
         } finally {
             setLoading(false); 
         }
-    }, []); 
+    }, [subjectId]); 
 
     useEffect(() => {
         fetchSortedData(); 
@@ -105,10 +107,7 @@ const PostQuestionPage = () => {
                     <FacebookShareButton />
                 </ShareWrapper>
                 <QuestionList subjectId={subjectId} />
-                
             </PostWrapper>
-            
-            
         </PostContainer>
     );
 };
