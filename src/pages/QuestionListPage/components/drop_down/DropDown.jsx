@@ -2,9 +2,8 @@ import { useState } from "react";
 import "../../../../styles/global.css";
 import { OptionBox, OptionText, Option } from "./Options";
 import styled from "styled-components";
-import { ReactComponent as upArrow } from "../../../../assets/image/upArrow.svg";
-import { ReactComponent as downArrow } from "../../../../assets/image/downArrow.svg";
-import { createPortal } from "react-dom";
+import { ReactComponent as upArrow } from "../../../../assets/icon/Arrow-up.svg";
+import { ReactComponent as downArrow } from "../../../../assets/icon/Arrow-down.svg";
 
 const DropDownText = styled.div`
 	flex: 1 0 0;
@@ -66,7 +65,6 @@ const CombinedDropDown = () => {
 					<DropDownText>{choice}</DropDownText>
 					{isOpen ? <UpArrowIcon /> : <DownArrowIcon />}
 				</DropDown>
-				<h1>hello</h1>
 				<OptionBox $isOpen={isOpen}>
 					<Option>
 						<OptionText
