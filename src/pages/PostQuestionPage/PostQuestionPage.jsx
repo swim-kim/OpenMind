@@ -3,7 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import LogoImg from '../../assets/default/logo.svg';
 import BackgroundImg from '../../assets/default/background.svg';
-import ProfileImg from '../../assets/default/defaultProfile.svg';
 import {
     FacebookShareButton,
     KakaoShareButton,
@@ -12,6 +11,9 @@ import {
 import QuestionList from './components/QuestionList';
 import { getQuestions } from '../../api/swagger/Question';
 import { getSubject } from '../../api/swagger/Subject';
+import ButtonFloating from '../../components/Buttonfloating/Buttonfloating';
+
+
 const PostContainer = styled.div`
     max-width: 100%;
     display: flex;
@@ -107,6 +109,7 @@ const PostQuestionPage = () => {
                     <FacebookShareButton />
                 </ShareWrapper>
                 <QuestionList subjectId={subjectId} />
+                <ButtonFloating />
             </PostWrapper>
         </PostContainer>
     );

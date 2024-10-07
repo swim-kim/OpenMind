@@ -22,7 +22,7 @@ export const ThumbsUp = ({ question }) => {
     };
 
     fetchLikes();
-  }, [question.id]);
+  }, []);
 
   const handleLike = async () => {
     if (!like) {
@@ -71,7 +71,7 @@ export const ThumbsDown = ({ question }) => {
       }
     };
     fetchDisLikes();
-  }, [question.id]);
+  }, []);
 
   const handleDislike = async () => {
     try {

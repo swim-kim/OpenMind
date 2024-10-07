@@ -88,6 +88,13 @@ const FeedCardReactionContainer = styled.div`
   gap: 32px;
 `;
 
+const RejectAnswer = styled.div`
+  color: var(--Red-50, #B93333);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px; 
+`;
+
 const elapsedTime = (date) => {
 	const start = new Date(date);
 	const end = new Date();
@@ -122,9 +129,11 @@ const FeedCard = ({ question, subjectId }) => {
                 <FeedCardAnswerWriter>{subjectId}</FeedCardAnswerWriter>
                 <FeedCardAnswerTime>{elapsedTime(answer.createdAt)}</FeedCardAnswerTime>
               </FeedCardAnswerHead>
-              <FeedCardAnswerText>
+              {answer.isRejected 
+              ?<RejectAnswer>답변 거절</RejectAnswer> 
+              :(<FeedCardAnswerText>
                 {answer.content}
-              </FeedCardAnswerText>
+              </FeedCardAnswerText>) }
             </FeedCardAnswerBox>
           </FeedCardAnswerContainer>
         ) : (
