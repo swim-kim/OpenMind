@@ -1,5 +1,5 @@
 import axios from 'axios';
-import LocalStorage from '../storage/LocalStore';
+import LocalStorage from '../storage/LocalStorage';
 
 /**
  * Fetches a list of subjects from the OpenMind API for the specified team, with optional pagination.
@@ -24,7 +24,7 @@ import LocalStorage from '../storage/LocalStore';
  * }
  * @throws {Error} - If there is an error fetching the subjects.
  */
-const getSubjects = async (team, offset = 0, limit = 10) => {
+const subjects_list = async (team, offset = 0, limit = 10) => {
   const URL = `https://openmind-api.vercel.app/${team}/subjects/?limit=${limit}&offset=${offset}`;
 
   try {
@@ -74,7 +74,7 @@ const getSubjects = async (team, offset = 0, limit = 10) => {
  * @throws {Error} - If there is an error creating the subject.
  */
 
-const createSubject = async (team, name) => {
+const subjects_create = async (team, name) => {
   const URL = `https://openmind-api.vercel.app/${team}/subjects/`
 
   try {
@@ -123,7 +123,7 @@ const createSubject = async (team, name) => {
  * }
  * @throws {Error} - If there is an error querying the subject.
  */
-const getSubjectById = async (team, id) => {
+const subjects_read = async (team, id) => {
   const URL = `https://openmind-api.vercel.app/${team}/subjects/${id}/`
 
   try {
@@ -160,7 +160,7 @@ const getSubjectById = async (team, id) => {
  * @returns {Promise<Object>} - The res data from the delete request.
  * @throws {Error} - If there is an error deleting the subject.
  */
-const deleteSubject = async (team, id) => {
+const subjects_delete = async (team, id) => {
   const URL = `https://openmind-api.vercel.app/${team}/subjects/${id}/`
 
   try {
@@ -211,7 +211,7 @@ const deleteSubject = async (team, id) => {
  * }
  * @throws {Error} - If there is an error querying the subject questions.
  */
-const getSubjectQuestions = async (team, id, limit = 10, offset = 0) => {
+const subjects_questions_list = async (team, id, limit = 10, offset = 0) => {
   const URL = `https://openmind-api.vercel.app/${team}/subjects/${id}/questions/?limit=${limit}&offset=${offset}`
   const storageKey = `subject_${id}_questions`
 
@@ -279,7 +279,7 @@ const getSubjectQuestions = async (team, id, limit = 10, offset = 0) => {
  *  }
  * @throws {Error} - If there is an error creating the subject question.
  */
-const createSubjectQuestion = async (team, id, questionData) => {
+const subjects_questions_create = async (team, id, questionData) => {
   const URL = `https://openmind-api.vercel.app/${team}/subjects/${id}/questions/`
   const storageKey = `subject_${id}_questions`
 
@@ -311,5 +311,11 @@ const createSubjectQuestion = async (team, id, questionData) => {
   }
 }
 
-
-export { getSubjects, createSubject, getSubjectById, deleteSubject, getSubjectQuestions, createSubjectQuestion };
+export {
+  subjects_list,
+  subjects_create,
+  subjects_read,
+  subjects_delete,
+  subjects_questions_list,
+  subjects_questions_create,
+}

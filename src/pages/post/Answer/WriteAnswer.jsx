@@ -44,6 +44,7 @@ const WriteAnswer = () => {
         <HeaderIllustration width="1200" height="234" />
         <ProfilePhotoLarge src={subject.imageSource} />
         <UsernameLarge>{subject.name}</UsernameLarge>
+        {/* 공유버튼으로 바꿔야함 */}
         <LinkAndShareButton />
       </Header>
 
@@ -101,5 +102,4 @@ const WriteAnswer = () => {
     </Container>
   );
 };
-
 export default WriteAnswer;

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const team = '10-1';
 
-/**
+/** _AnswerRetrieveUpdate
  * Represents the structure of an answer that can be retrieved and updated.
  * const _AnswerRetrieveUpdate = {
  *   id,				    //integer, readOnly: true
@@ -13,7 +13,7 @@ const team = '10-1';
  * }
  */
 
-/**
+/** _Question
  * Represents the structure of a question that can be retrieved and updated.
  * const _Question = [{
  *   id,				    //integer, readOnly: true
@@ -27,7 +27,7 @@ const team = '10-1';
  * }]
  */
 
-/**
+/** _Reaction
  * Represents the structure of a reaction that can be associated with a question.
  * const _Reaction = {
  *   type, 			//*string, Enum: Array [ like, dislike ]
@@ -41,7 +41,7 @@ const team = '10-1';
  * @param {number} id - The unique identifier of the question to retrieve.
  * @returns {Promise<Object>} - The question data, or throws an error if the request fails.
  */
-const getQuestions = async (id) => {
+const questions_read = async (id) => {
   try {
     const response = await axios.get(`https://openmind-api.vercel.app/${team}/questions/${id}/`, {
       headers: {
@@ -54,7 +54,7 @@ const getQuestions = async (id) => {
       localStorage.setItem(`question_${id}`, JSON.stringify(questionData));
       return questionData;
     } else {
-      throw new Error('Failed to fetch question');
+      throw new Error(`Failed to getQuestions(${id}) and return ststus is ${response.status}`);
     }
   } catch (error) {
     console.error('Error fetching question:', error);
@@ -69,7 +69,7 @@ const getQuestions = async (id) => {
  * @param {number} id - The unique identifier of the question to delete.
  * @returns {Promise<boolean>} - True if the question was successfully deleted, or throws an error if the request fails.
  */
-const deleteQuestion = async (id) => {
+const questions_delete = async (id) => {
   try {
     const response = await axios.delete(`https://openmind-api.vercel.app/${team}/questions/${id}/`, {
       headers: {
@@ -97,11 +97,11 @@ const deleteQuestion = async (id) => {
  * }'
  *
  * @param {number} id - The unique identifier of the question to react to.
- * @param {string} reactionType - The type of reaction to add (e.g. "like").
+ * @param {string} reactionType - The type of reaction to add (e.g. "like" or "dislike").
  * @returns {Promise<Object>} - The updated question object after the reaction is added.
  * @throws {Error} - If the request to add the reaction fails.
  */
-const reactToQuestion = async (id, reactionType) => {
+const questions_reaction_create = async (id, reactionType) => {
   try {
     const response = await axios.post(`https://openmind-api.vercel.app/${team}/questions/${id}/reaction/`, {
       type: reactionType
@@ -142,7 +142,7 @@ const reactToQuestion = async (id, reactionType) => {
  * @returns {Promise<Object>} - The updated question object after the answer is added.
  * @throws {Error} - If the request to add the answer fails.
  */
-const answerQuestion = async (questionId, content, isRejected, team) => {
+const questions_answers_create = async (questionId, content, isRejected, team) => {
   try {
     const response = await axios.post(`https://openmind-api.vercel.app/${team}/questions/${questionId}/answers/`, {
       questionId,
@@ -169,5 +169,9 @@ const answerQuestion = async (questionId, content, isRejected, team) => {
   }
 };
 
-export { getQuestions, deleteQuestion, reactToQuestion, answerQuestion };
-
+export {
+  questions_read,
+  questions_delete,
+  questions_reaction_create,
+  questions_answers_create
+};
