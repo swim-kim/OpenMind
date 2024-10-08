@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import UserCard from "./UserCard";
-import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ArrayCardLine = styled.div`
 	display: flex;
@@ -39,27 +39,24 @@ const ArrayContainer = styled.div`
 
 //useEffect로 api의 값을 useState의 세터로 가져온다.
 const ArrayCard = ({ cardList }) => {
-	const { id } = useParams();
-	console.log("URL 파라미터 id:", id);
+	// const { id } = useParams();
+	// console.log("URL 파라미터 id:", id);
 	return (
 		<>
 			<ArrayContainer>
 				<ArrayCardLine>
-					{console.log("sss", cardList.slice(0, 4))}
-					{cardList.map((el) => {
-						return (
+					{cardList.map((el) => (
+						<Link key={el.id} to={`/post/${el.id}`}>
 							<UserCard
-								key={el.id}
 								id={el.id}
 								name={el.name}
 								imageSource={el.imageSource}
 								questionCount={el.questionCount}
-								param={id}
-							></UserCard>
-						);
-					})}
+							/>
+						</Link>
+					))}
 				</ArrayCardLine>
-			</ArrayContainer>
+        	</ArrayContainer>
 		</>
 	);
 };

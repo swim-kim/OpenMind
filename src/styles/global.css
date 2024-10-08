@@ -4,10 +4,10 @@
     /* Gray scale */
     --gray-60: #000000;
     --gray-50: #515151;
-    --gray-40: #454c53;
-    --gray-30: #818181;
-    --gray-20: #CFCFCF;
-    --gray-10: #FFFFFF;
+    --gray-40: #818181;
+    --gray-30: #cfcfcf;
+    --gray-20: #f9f9f9;
+    --gray-10: #ffffff;
 
     /* Brown  */
     --brown-50: #341909;

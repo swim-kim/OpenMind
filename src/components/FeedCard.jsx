@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import FeedCardQuestion from './FeedCardQuestion';
-import DefaultImg from '../assets/default/default_profile.png';
-import Icon from '../components/Icon';
+import DefaultImg from '../assets/default/defaultProfile.svg';
 import { ThumbsDown, ThumbsUp } from './Reaction/Reaction';
 import Badge from './Badge/Badge'
+
 const FeedCardContainer = styled.div`
   width: 620px;
   padding: 32px;
@@ -63,7 +63,6 @@ const FeedCardAnswerWriter = styled.div`
 `;
 const FeedCardAnswerTime = styled.div`
   color: var(--Grayscale-40, #818181);
-  font-feature-settings: 'liga' off, 'clig' off;
   font-size: 14px;
   font-weight: 500;
   line-height: 18px;
@@ -89,33 +88,61 @@ const FeedCardReactionContainer = styled.div`
   gap: 32px;
 `;
 
+const RejectAnswer = styled.div`
+  color: var(--Red-50, #B93333);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px; 
+`;
 
-const FeedCard = () => {
-  const questionStatus = "answered";
+const elapsedTime = (date) => {
+	const start = new Date(date);
+	const end = new Date();
 
+	const seconds = Math.floor((end.getTime() - start.getTime()) / 1000);
+	if (seconds < 60) return '방금 전';
+
+	const minutes = seconds / 60;
+	if (minutes < 60) return `${Math.floor(minutes)}분 전`;
+
+	const hours = minutes / 60;
+	if (hours < 24) return `${Math.floor(hours)}시간 전`;
+
+	const days = hours / 24;
+	return `${Math.floor(days)}일 전`;
+};
+
+const FeedCard = ({ question, subjectId }) => {
+  const answer = question.answer; 
   return (
     <FeedCardContainer>
       <FeedCardBox>
         <FeedCardButtonWrapper>
-          <Badge status={questionStatus} />
+          <Badge status={answer ? "answered" : "unanswered"} /> 
         </FeedCardButtonWrapper>
-        <FeedCardQuestion />
-        <FeedCardAnswerContainer>
-          <FeedCardUserProfile src={DefaultImg} />
-          <FeedCardAnswerBox>
-            <FeedCardAnswerHead>
-              <FeedCardAnswerWriter>아초는 고양이</FeedCardAnswerWriter>
-              <FeedCardAnswerTime>2주전</FeedCardAnswerTime>
-            </FeedCardAnswerHead>
-            <FeedCardAnswerText>
-            그들을 불러 귀는 이상의 오직 피고, 가슴이 이상, 못할 봄바람이다. 찾아다녀도, 전인 방황하였으며, 대한 바이며, 이것이야말로 가치를 청춘의 따뜻한 그리하였는가? 몸이 열락의 청춘의 때문이다. 천고에 피어나는 간에 밝은 이상, 인생의 만물은 피다. 대중을 이성은 방황하여도, 그리하였는가? 크고 평화스러운 품에 방황하였으며, 말이다. 이상은 들어 예수는 크고 긴지라 역사를 피다. 얼음에 있음으로써 꽃 보배를 곧 가는 교향악이다. 우는 새 예가 우리의 것은 피다. 피가 그것을 어디 앞이 기쁘며, 이상의 열락의 위하여서 끝까지 것이다. 있는 봄바람을 방황하여도, 우리의 것은 작고 아니한 영원히 듣기만 운다. 
-            </FeedCardAnswerText>
-          </FeedCardAnswerBox>
-        </FeedCardAnswerContainer>
+        <FeedCardQuestion question={question} />
+        {answer ? ( 
+          <FeedCardAnswerContainer>
+            <FeedCardUserProfile src={DefaultImg} />
+            <FeedCardAnswerBox>
+              <FeedCardAnswerHead>
+                <FeedCardAnswerWriter>{subjectId}</FeedCardAnswerWriter>
+                <FeedCardAnswerTime>{elapsedTime(answer.createdAt)}</FeedCardAnswerTime>
+              </FeedCardAnswerHead>
+              {answer.isRejected 
+              ?<RejectAnswer>답변 거절</RejectAnswer> 
+              :(<FeedCardAnswerText>
+                {answer.content}
+              </FeedCardAnswerText>) }
+            </FeedCardAnswerBox>
+          </FeedCardAnswerContainer>
+        ) : (
+          <></>
+        )}
         <FeedCardLine />
         <FeedCardReactionContainer>
-          <ThumbsUp />
-          <ThumbsDown />
+          <ThumbsUp question={question} />
+          <ThumbsDown question={question} />
         </FeedCardReactionContainer>
       </FeedCardBox>
     </FeedCardContainer>

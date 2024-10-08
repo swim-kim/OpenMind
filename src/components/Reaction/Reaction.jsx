@@ -4,7 +4,7 @@ import "./Reaction.css";
 import { ReactComponent as ThumbsupSVG } from "../../assets/reaction/thumbs-up.svg";
 import { ReactComponent as ThumbsdownSVG } from "../../assets/reaction/thumbs-down.svg";
 
-export const ThumbsUp = () => {
+export const ThumbsUp = ({ question }) => {
   const [likeCount, setLikeCount] = useState(0);
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
@@ -12,9 +12,8 @@ export const ThumbsUp = () => {
   useEffect(() => {
     const fetchLikes = async () => {
       try {
-        const questionId = 14077;
         const response = await axios.get(
-          `https://openmind-api.vercel.app/10-1/questions/${questionId}/`
+          `https://openmind-api.vercel.app/10-1/questions/${question.id}/`
         );
         setLikeCount(response.data.like);
       } catch (error) {
@@ -28,9 +27,8 @@ export const ThumbsUp = () => {
   const handleLike = async () => {
     if (!like) {
       try {
-        const questionId = 14077;
         const response = await axios.post(
-          `https://openmind-api.vercel.app/10-1/questions/${questionId}/reaction/`,
+          `https://openmind-api.vercel.app/10-1/questions/${question.id}/reaction/`,
           { type: "like" },
           { headers: { "Content-Type": "application/json" } }
         );
@@ -56,7 +54,7 @@ export const ThumbsUp = () => {
   );
 };
 
-export const ThumbsDown = () => {
+export const ThumbsDown = ({ question }) => {
   const [dislikeCount, setDisLikeCount] = useState(0);
   const [dislike, setDislike] = useState(false);
   const [like, setLike] = useState(false);
@@ -64,25 +62,22 @@ export const ThumbsDown = () => {
   useEffect(() => {
     const fetchDisLikes = async () => {
       try {
-        const questionId = 14077;
         const response = await axios.get(
-          `https://openmind-api.vercel.app/10-1/questions/${questionId}/`
+          `https://openmind-api.vercel.app/10-1/questions/${question.id}/`
         );
         setDisLikeCount(response.data.dislike);
       } catch (error) {
         console.error("싫어요 수를 가져오는데 실패햇습니다.", error);
       }
     };
-
     fetchDisLikes();
   }, []);
 
   const handleDislike = async () => {
-    const questionId = 14077;
     try {
       if (!dislike) {
         await axios.post(
-          `https://openmind-api.vercel.app/10-1/questions/${questionId}/reaction/`,
+          `https://openmind-api.vercel.app/10-1/questions/${question.id}/reaction/`,
           { type: "dislike" }
         );
         setDisLikeCount((prev) => prev + 1);
