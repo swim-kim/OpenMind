@@ -15,9 +15,10 @@ import ButtonFloating from '../../components/Buttonfloating/Buttonfloating';
 
 
 const PostContainer = styled.div`
-    max-width: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
+
 `;
 
 const PostWrapper = styled.div`
@@ -26,11 +27,20 @@ const PostWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    @media (max-width:768px){
+        max-width: 768px;
+    }
 `;
 
 const Background = styled.img`
     width: 100%;
     height: auto;
+    @media (max-width:768px){
+        width:1200px;
+        object-fit:cover;
+        overflow:hidden;
+    }
 `;
 
 const Logo = styled.img`
@@ -71,6 +81,12 @@ const ShareWrapper = styled.div`
     top:64px;
 `;
 
+const FloatingButtonWrapper = styled.div`
+    width:100%;
+    margin-top :58px;
+    display:flex;
+    justify-content: flex-end;
+`;
 
 
 const PostQuestionPage = () => {
@@ -109,7 +125,10 @@ const PostQuestionPage = () => {
                     <FacebookShareButton />
                 </ShareWrapper>
                 <QuestionList subjectId={subjectId} />
-                <ButtonFloating />
+                <FloatingButtonWrapper >
+                    <ButtonFloating />
+                </FloatingButtonWrapper>
+                
             </PostWrapper>
         </PostContainer>
     );
