@@ -8,7 +8,7 @@ import "./Toast.css";
 
 export const KakaoShareButton = () => {
   const location = useLocation();
-  const baseUrl = "localhost:3000" //배포 후 수정 필요함
+  const baseUrl = "https://openmind-10-1.netlify.app" 
   useEffect(() => {
     if (!window.Kakao.isInitialized()) {
       window.Kakao.init("4efde28e8b63fd9c48dfdf697ecbf6d6");
@@ -40,7 +40,7 @@ export const KakaoShareButton = () => {
 
 export const FacebookShareButton = () => {
   const location = useLocation();
-  const baseUrl = "localhost:3000" //배포 후 수정 필요함
+  const baseUrl = "https://openmind-10-1.netlify.app" 
   const handleFacebookShare = () => {
     window.FB.ui({
       method: "share",
@@ -58,7 +58,7 @@ export const FacebookShareButton = () => {
 export const LinkShareButton = () => {
   const [copied, setCopied] = useState(false);
   const location = useLocation();
-  const baseUrl = "localhost:3000" //배포 후 수정 필요함
+  const baseUrl = "https://openmind-10-1.netlify.app" //배포 후 수정 필요함
   const handleLinkCopy = () => {
     
     console.log(location);
