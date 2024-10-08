@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Icon from '../../../components/Icon';
 import FeedCard from '../../../components/FeedCard';
 import { getQuestions } from '../../../api/swagger/Question';
+import NoQuestionImg from '../../../assets/default/question_empty_logo.png';
 
 const QuestionListContainer = styled.div`
     width: 684px;
@@ -37,6 +38,11 @@ const QuestionCountText = styled.div`
 `;
 const Observer = styled.div`
     height:10px;
+`;
+const NoQuestion = styled.img`
+    width: 150px;
+    height: 154px;
+    flex-shrink: 0;
 `;
 
 function QuestionList( { subjectId } ) {
@@ -89,14 +95,26 @@ function QuestionList( { subjectId } ) {
 
     return (
         <QuestionListContainer>
-            <QuestionCountContainer>
-                <StyledMessageIcon />
-                <QuestionCountText>{response.count}개의 질문이 있습니다</QuestionCountText>
-            </QuestionCountContainer>
-            {questionList.map((question) => (
-                <FeedCard key={question.id} question={question} subjectId={subjectId}/>
-            ))}
-            <Observer id='observer'/>
+            {response.count === 0 ? (
+                <>
+                    <QuestionCountContainer>
+                        <StyledMessageIcon />
+                        <QuestionCountText>아직 질문이 없습니다</QuestionCountText>
+                    </QuestionCountContainer>
+                    <NoQuestion src={NoQuestionImg}/>
+                </>
+            ) : (
+                <>
+                    <QuestionCountContainer>
+                        <StyledMessageIcon />
+                        <QuestionCountText>{response.count}개의 질문이 있습니다</QuestionCountText>
+                    </QuestionCountContainer>
+                    {questionList.map((question) => (
+                        <FeedCard key={question.id} question={question} subjectId={subjectId} />
+                    ))}
+                    <Observer id='observer' />
+                </>
+            )}
         </QuestionListContainer>
     );
 }

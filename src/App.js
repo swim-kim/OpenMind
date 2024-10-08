@@ -1,11 +1,5 @@
 import React, { useEffect } from "react";
 import "./styles/global.css";
-import {
-  FacebookShareButton,
-  KakaoShareButton,
-  LinkShareButton,
-} from "./components/Buttonshare/Buttonshare";
-import { FloatingButton } from "./components/Buttonfloating/Buttonfloating";
 import Router from "./Router";
 
 function App() {
@@ -35,10 +29,6 @@ function App() {
   return (
     <div>
       <Router />
-      {/* <KakaoShareButton />
-      <FacebookShareButton />
-      <LinkShareButton />
-      <FloatingButton /> */}
     </div>
   );
 }
