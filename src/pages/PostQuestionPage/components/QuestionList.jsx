@@ -87,7 +87,7 @@ function QuestionList( { subjectId } ) {
                 observer.unobserve(observerTarget);
             }
         };
-    }, []);
+    }, [handleObserver]);
 
     useEffect(() => {
         fetchSortedData(); 
