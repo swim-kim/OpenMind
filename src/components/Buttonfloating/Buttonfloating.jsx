@@ -7,6 +7,11 @@ const StyledFloatingButton = styled.button`
   align-items: center;
   width: 208px;
   height: 54px;
+  padding: 12px 24px;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 25px;
   border-radius: 200px;
   color: var(--gray-10);
   background-color: var(--brown-40);
@@ -14,9 +19,9 @@ const StyledFloatingButton = styled.button`
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
-const FloatingButton = ({ onModalOpen }) => {
+const FloatingButton = ({ onClick }) => {
   const handleButtonClick = () => {
-    onModalOpen(true);
+    onClick(true);
   };
 
   return (
