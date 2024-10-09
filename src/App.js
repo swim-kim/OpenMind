@@ -19,10 +19,10 @@ function App() {
   useEffect(() => {
     window.fbAsyncInit = function () {
       window.FB.init({
-        appId: process.env.REACT_APP_FACEBOOK,
+        appId: 3819506264969417,
         autoLogAppEvents: true,
         xfbml: true,
-        version: "v15.0",
+        version: 'v21.0',
       });
     };
   }, []);
