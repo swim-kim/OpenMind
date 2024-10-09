@@ -5,7 +5,7 @@ import FeedCard from "./components/FeedCard";
 import PostQuestionPage from "./pages/PostQuestionPage/PostQuestionPage";
 import PostAnswerPage from "./pages/PostAnswerPage/WriteAnswer";
 import QuestionModal from "./components/QuestionModal";
-import Main from "./pages/Main";
+import Main from "./pages/MainPage/Main";
 
 
 
@@ -14,11 +14,11 @@ function Router() {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path="/" element={<QuestionListPage />} />
+				<Route path="/" element={<Main />} />
 				<Route path="/list" element={<QuestionListPage />} />
 				<Route path="/post/:subjectId" element={<PostQuestionPage />} />
 				<Route path="/post/answer" element={<PostAnswerPage />} />
-        <Route path="/post/:subjectId/questions" element={<QuestionModal />} />
+				<Route path="/post/:subjectId/questions" element={<QuestionModal />} />
 			</Routes>
 		</BrowserRouter>
 	);

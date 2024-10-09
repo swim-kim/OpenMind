@@ -60,7 +60,7 @@ const Main = () => {
 		}
 	};
 	const onClickListSubjects = () => {
-		navigate("/list/ListSubjects");
+		navigate("/list");
 	};
 
 	return (
