@@ -58,7 +58,7 @@ function QuestionList( { subjectId } ) {
         try {
             setIsLoading(true); 
             const questions = await getQuestions(subjectId, limit, page*limit ); 
-            setQuestionList((prev) => [...prev, ...questions.results]);
+            setQuestionList(questions.results);
             setResponse(questions);
             console.log(limit)
         } catch (err) {
@@ -68,28 +68,6 @@ function QuestionList( { subjectId } ) {
         }
     }, [page, limit]); 
 
-    const handleObserver = useCallback((entries) => {
-        const target = entries[0];
-        if(target.isIntersecting && !isLoading){
-            setPage((prevPage) => prevPage + 1);
-        }
-    },[isLoading]);
-    useEffect(() => {
-        const observer = new IntersectionObserver(handleObserver, {
-            threshold: 0, 
-        });
-
-        const observerTarget = document.getElementById('observer');
-        if (observerTarget) {
-            observer.observe(observerTarget);
-        }
-
-        return () => {
-            if (observerTarget) {
-                observer.unobserve(observerTarget);
-            }
-        };
-    }, [handleObserver]);
 
     useEffect(() => {
         fetchSortedData(); 
@@ -114,7 +92,6 @@ function QuestionList( { subjectId } ) {
                     {questionList.map((question) => (
                         <FeedCard key={question.id} question={question} subjectId={subjectId} />
                     ))}
-                    <Observer id='observer' />
                 </>
             )}
         </QuestionListContainer>
