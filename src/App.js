@@ -19,7 +19,7 @@ function App() {
   useEffect(() => {
     window.fbAsyncInit = function () {
       window.FB.init({
-        appId: "01031928263",
+        appId: process.env.FACEBOOK,
         autoLogAppEvents: true,
         xfbml: true,
         version: "v15.0",

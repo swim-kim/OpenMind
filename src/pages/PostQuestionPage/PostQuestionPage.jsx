@@ -137,7 +137,7 @@ const PostQuestionPage = () => {
                     <ShareWrapper>
                         <LinkShareButton />
                         <KakaoShareButton subject={subject} />
-                        <FacebookShareButton />
+                        <FacebookShareButton subject={subject} />
                     </ShareWrapper>
                 </ProfileContainer>
                 
