@@ -9,8 +9,8 @@ import {
   LinkShareButton,
 } from "../../components/Buttonshare/Buttonshare";
 import QuestionList from "./components/QuestionList";
-import { getQuestions } from "../../api/swagger/Question";
 import { getSubject } from "../../api/swagger/Subject";
+
 import QuestionModal from "../../components/QuestionModal";
 
 const PostContainer = styled.div`
@@ -136,7 +136,7 @@ const PostQuestionPage = () => {
                     <UserName>{subject.name}</UserName>
                     <ShareWrapper>
                         <LinkShareButton />
-                        <KakaoShareButton />
+                        <KakaoShareButton subject={subject} />
                         <FacebookShareButton />
                     </ShareWrapper>
                 </ProfileContainer>
