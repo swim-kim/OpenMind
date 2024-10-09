@@ -16,7 +16,7 @@ export const KakaoShareButton = ({ subject }) => {
     }
   }, []);
 
-  const handleKakaoShare = (subject) => {
+  const handleKakaoShare = () => {
     window.Kakao.Link.sendDefault({
       objectType: "feed",
       content: {
