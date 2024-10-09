@@ -60,7 +60,7 @@ export const FacebookShareButton = () => {
 export const LinkShareButton = () => {
   const [copied, setCopied] = useState(false);
   const location = useLocation();
-  const baseUrl = "https://openmind-10-1.netlify.app" //배포 후 수정 필요함
+  const baseUrl = "https://openmind-10-1.netlify.app" 
   const handleLinkCopy = () => {
     
     console.log(location);
