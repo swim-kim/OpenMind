@@ -23,7 +23,7 @@ export const KakaoShareButton = () => {
         title: '오픈마인드',
         description: `${subject.name}님의 오픈마인드입니다.`,
         imageUrl:
-          {Thumbnail},
+          Thumbnail,
         link: {
           mobileWebUrl: `${baseUrl}${location.pathname}`,
           webUrl: `${baseUrl}${location.pathname}`,
@@ -59,7 +59,7 @@ export const FacebookShareButton = () => {
 export const LinkShareButton = () => {
   const [copied, setCopied] = useState(false);
   const location = useLocation();
-  const baseUrl = "https://openmind-10-1.netlify.app" //배포 후 수정 필요함
+  const baseUrl = "https://openmind-10-1.netlify.app" 
   const handleLinkCopy = () => {
     
     console.log(location);
