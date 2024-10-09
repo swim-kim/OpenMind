@@ -5,6 +5,10 @@ import FeedCard from "./components/FeedCard";
 import PostQuestionPage from "./pages/PostQuestionPage/PostQuestionPage";
 import PostAnswerPage from "./pages/PostAnswerPage/WriteAnswer";
 import QuestionModal from "./components/QuestionModal";
+import Main from "./pages/Main";
+
+
+
 
 function Router() {
 	return (

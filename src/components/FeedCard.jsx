@@ -13,49 +13,49 @@ const FeedCardContainer = styled.div`
   box-shadow: var(--box-shadow-1px);
 `;
 
-const FeedCardBox = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-`;
+// const FeedCardBox = styled.div`
+//   width: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   gap: 32px;
+// `;
 
-const FeedCardButtonWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-`;
+// const FeedCardButtonWrapper = styled.div`
+//   width: 100%;
+//   display: flex;
+//   justify-content: space-between;
+// `;
 
-const FeedCardAnswerContainer = styled.div`
-  width:100%;
-  display: flex;
-  gap: 12px;
-`;
+// const FeedCardAnswerContainer = styled.div`
+//   width:100%;
+//   display: flex;
+//   gap: 12px;
+// `;
 
-const FeedCardUserProfile = styled.img`
-  width: 48px;
-  height: 48px;
-  flex-shrink: 0;
-  border-radius: 48px;
-`;
+// const FeedCardUserProfile = styled.img`
+//   width: 48px;
+//   height: 48px;
+//   flex-shrink: 0;
+//   border-radius: 48px;
+// `;
 
-const FeedCardAnswerBox = styled.div`
-  width:100%;
-  display: flex;
-  gap: 4px;
-  flex-direction: column;
-`;
-const FeedCardAnswerHead = styled.div`
-  width:100%;
-  display:flex;
-  gap:8px;
-  display: flex;
-`;
-const FeedCardAnswerWriter = styled.div`
-  color: var(--Grayscale-60, #000);
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 24px; 
+// const FeedCardAnswerBox = styled.div`
+//   width:100%;
+//   display: flex;
+//   gap: 4px;
+//   flex-direction: column;
+// `;
+// const FeedCardAnswerHead = styled.div`
+//   width:100%;
+//   display:flex;
+//   gap:8px;
+//   display: flex;
+// `;
+// const FeedCardAnswerWriter = styled.div`
+//   color: var(--Grayscale-60, #000);
+//   font-size: 18px;
+//   font-weight: 400;
+//   line-height: 24px; 
 
   @media (max-width: 767px) {
     font-size: 16px;
@@ -82,11 +82,11 @@ const FeedCardLine = styled.hr`
   background: var(--Grayscale-30, #CFCFCF);
 `;
 
-const FeedCardReactionContainer = styled.div`
-  display: flex;
-  align-items: flex-start;
-  gap: 32px;
-`;
+// const FeedCardReactionContainer = styled.div`
+//   display: flex;
+//   align-items: flex-start;
+//   gap: 32px;
+// `;
 
 const RejectAnswer = styled.div`
   color: var(--Red-50, #B93333);
@@ -149,4 +149,4 @@ const FeedCard = ({ question, subjectId }) => {
   );
 };
 
-export default FeedCard;
+// export default FeedCard;
