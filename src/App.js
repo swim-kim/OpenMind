@@ -22,7 +22,7 @@ function App() {
         appId: process.env.FACEBOOK,
         autoLogAppEvents: true,
         xfbml: true,
-        version: "v15.0",
+        version: "v21.0",
       });
     };
   }, []);
