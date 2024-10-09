@@ -46,26 +46,26 @@ const NoQuestion = styled.img`
 `;
 
 function QuestionList({ subjectId }) {
-    const [questionList, setQuestionList] = useState([]); // 질문 목록
-    const [response, setResponse] = useState({ count: 0, results: [] }); // 응답 데이터 초기값
-    const [isLoading, setIsLoading] = useState(false); // 로딩 상태
-    const [error, setError] = useState(null); // 에러 상태
+    const [questionList, setQuestionList] = useState([]);
+    const [response, setResponse] = useState({ count: 0, results: [] });
+    const [isLoading, setIsLoading] = useState(false); 
+    const [error, setError] = useState(null); 
 
     const fetchAllQuestions = async () => {
-        setIsLoading(true); // 로딩 시작
+        setIsLoading(true);
         try {
-            const questions = await getQuestions(subjectId); // 모든 질문 가져오기
-            setQuestionList(questions.results); // 질문 목록 설정
-            setResponse(questions); // 응답 설정
+            const questions = await getQuestions(subjectId); 
+            setQuestionList(questions.results);
+            setResponse(questions);
         } catch (err) {
             setError(err);
         } finally {
-            setIsLoading(false); // 로딩 완료
+            setIsLoading(false); 
         }
     };
 
     useEffect(() => {
-        fetchAllQuestions(); // 컴포넌트 마운트 시 모든 질문 가져오기
+        fetchAllQuestions(); 
     }, [subjectId]);
 
     return (
