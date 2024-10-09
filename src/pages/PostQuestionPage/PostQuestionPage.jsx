@@ -1,18 +1,17 @@
-import React, { useCallback, useState,useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import LogoImg from '../../assets/default/logo.svg';
-import BackgroundImg from '../../assets/default/background.svg';
+import React, { useCallback, useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import LogoImg from "../../assets/default/logo.svg";
+import BackgroundImg from "../../assets/default/background.svg";
 import {
-    FacebookShareButton,
-    KakaoShareButton,
-    LinkShareButton,
+  FacebookShareButton,
+  KakaoShareButton,
+  LinkShareButton,
 } from "../../components/Buttonshare/Buttonshare";
-import QuestionList from './components/QuestionList';
-import { getQuestions } from '../../api/swagger/Question';
-import { getSubject } from '../../api/swagger/Subject';
-import ButtonFloating from '../../components/Buttonfloating/Buttonfloating';
-
+import QuestionList from "./components/QuestionList";
+import { getQuestions } from "../../api/swagger/Question";
+import { getSubject } from "../../api/swagger/Subject";
+import QuestionModal from "../../components/QuestionModal";
 
 const PostContainer = styled.div`
     width: 100%;
@@ -44,41 +43,41 @@ const Background = styled.img`
 `;
 
 const Logo = styled.img`
-    display: flex;
-    width: 170px;
-    height: 67px;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-    position:absolute;
-    top:50px;
+  display: flex;
+  width: 170px;
+  height: 67px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  position: absolute;
+  top: 50px;
 `;
 
 const Profile = styled.img`
-    display: flex;
-    width: 136px;
-    height: 136px;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-    position:absolute;
-    top:129px;
-    border-radius: 136px;
+  display: flex;
+  width: 136px;
+  height: 136px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  position: absolute;
+  top: 129px;
+  border-radius: 136px;
 `;
 const UserName = styled.div`
-    color: var(--Grayscale-60, #000);
-    font-size: 32px;
-    font-weight: 400;
-    line-height: 40px; 
-    position:relative;
-    top:55px;
+  color: var(--Grayscale-60, #000);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 40px;
+  position: relative;
+  top: 55px;
 `;
 const ShareWrapper = styled.div`
-    display: inline-flex;
-    align-items: flex-start;
-    gap: 12px;
-    position:relative;
-    top:64px;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 12px;
+  position: relative;
+  top: 64px;
 `;
 
 const FloatingButtonWrapper = styled.div`
@@ -90,27 +89,26 @@ const FloatingButtonWrapper = styled.div`
 
 
 const PostQuestionPage = () => {
-    const { subjectId } = useParams();
-    const [subject, setSubject] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const fetchSortedData = useCallback(async () => {
-        console.log(subjectId);
-        try {
-            setLoading(true); 
-            const response = await getSubject(subjectId);
-            
-            setSubject(response);
-        } catch (err) {
-            setError(err); 
-        } finally {
-            setLoading(false); 
-        }
-    }, [subjectId]); 
+  const { subjectId } = useParams();
+  const [subject, setSubject] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const fetchSortedData = useCallback(async () => {
+    console.log(subjectId);
+    try {
+      setLoading(true);
+      const response = await getSubject(subjectId);
+      setSubject(response);
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  }, [subjectId]);
 
-    useEffect(() => {
-        fetchSortedData(); 
-    }, [fetchSortedData]);
+  useEffect(() => {
+    fetchSortedData();
+  }, [fetchSortedData]);
 
     return (
         <PostContainer>
@@ -126,7 +124,11 @@ const PostQuestionPage = () => {
                 </ShareWrapper>
                 <QuestionList subjectId={subjectId} />
                 <FloatingButtonWrapper >
-                    <ButtonFloating />
+                            <QuestionModal
+                              subjectId={subjectId}
+                              imageSource={subject.imageSource}
+                              name={subject.name}
+                            />
                 </FloatingButtonWrapper>
                 
             </PostWrapper>

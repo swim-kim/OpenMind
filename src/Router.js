@@ -4,7 +4,7 @@ import ArrayCard from "./pages/QuestionListPage/components/user_card/ArrayCard";
 import FeedCard from "./components/FeedCard";
 import PostQuestionPage from "./pages/PostQuestionPage/PostQuestionPage";
 import PostAnswerPage from "./pages/PostAnswerPage/WriteAnswer";
-
+import QuestionModal from "./components/QuestionModal";
 
 function Router() {
 	return (
@@ -14,6 +14,7 @@ function Router() {
 				<Route path="/list" element={<QuestionListPage />} />
 				<Route path="/post/:subjectId" element={<PostQuestionPage />} />
 				<Route path="/post/answer" element={<PostAnswerPage />} />
+        <Route path="/post/:subjectId/questions" element={<QuestionModal />} />
 			</Routes>
 		</BrowserRouter>
 	);
