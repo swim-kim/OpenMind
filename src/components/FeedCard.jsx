@@ -6,18 +6,24 @@ import { ThumbsDown, ThumbsUp } from "./Reaction/Reaction";
 import Badge from "./Badge/Badge";
 
 const FeedCardContainer = styled.div`
-	width: 620px;
-	padding: 32px;
-	border-radius: 16px;
-	background: var(--Grayscale-10, #fff);
-	box-shadow: var(--box-shadow-1px);
+  width: 620px;
+  padding: 32px;
+  border-radius: 16px;
+  background: var(--Grayscale-10, #FFF);
+  box-shadow: var(--box-shadow-1px);
+  @media (max-width:375px){
+        width: 247px;
+    }
 `;
 
 const FeedCardBox = styled.div`
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	gap: 32px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  @media (max-width:375px){
+        gap:24px;
+    }
 `;
 
 const FeedCardButtonWrapper = styled.div`
@@ -33,10 +39,14 @@ const FeedCardAnswerContainer = styled.div`
 `;
 
 const FeedCardUserProfile = styled.img`
-	width: 48px;
-	height: 48px;
-	flex-shrink: 0;
-	border-radius: 48px;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 48px;
+  @media (max-width:375px){
+    width: 32px;
+    height: 32px;
+    }
 `;
 
 const FeedCardAnswerBox = styled.div`
@@ -84,9 +94,10 @@ const FeedCardLine = styled.hr`
 `;
 
 const FeedCardReactionContainer = styled.div`
-	display: flex;
-	align-items: flex-start;
-	gap: 32px;
+  width:100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
 `;
 
 const RejectAnswer = styled.div`

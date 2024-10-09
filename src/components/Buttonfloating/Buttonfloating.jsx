@@ -5,9 +5,6 @@ const StyledFloatingButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
   width: 208px;
   height: 54px;
   padding: 12px 24px;

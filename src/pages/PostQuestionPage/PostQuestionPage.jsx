@@ -9,15 +9,12 @@ import {
   LinkShareButton,
 } from "../../components/Buttonshare/Buttonshare";
 import QuestionList from "./components/QuestionList";
-import { getQuestions } from "../../api/swagger/Question";
 import { getSubject } from "../../api/swagger/Subject";
+
 import QuestionModal from "../../components/QuestionModal";
 
 const PostContainer = styled.div`
     width: 100%;
-    display: flex;
-    justify-content: center;
-
 `;
 
 const PostWrapper = styled.div`
@@ -26,20 +23,19 @@ const PostWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    
     @media (max-width:768px){
         max-width: 768px;
+    }
+    @media (max-width:375px){
+        max-width: 375px;
     }
 `;
 
 const Background = styled.img`
-    width: 100%;
+    width: 1200px;
     height: auto;
-    @media (max-width:768px){
-        width:1200px;
-        object-fit:cover;
-        overflow:hidden;
-    }
+    object-fit: cover;
 `;
 
 const Logo = styled.img`
@@ -54,30 +50,24 @@ const Logo = styled.img`
 `;
 
 const Profile = styled.img`
-  display: flex;
-  width: 136px;
-  height: 136px;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-  position: absolute;
-  top: 129px;
-  border-radius: 136px;
+    display: flex;
+    width: 136px;
+    height: 136px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 136px;
 `;
 const UserName = styled.div`
-  color: var(--Grayscale-60, #000);
-  font-size: 32px;
-  font-weight: 400;
-  line-height: 40px;
-  position: relative;
-  top: 55px;
+    color: var(--Grayscale-60, #000);
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 40px; 
 `;
 const ShareWrapper = styled.div`
-  display: inline-flex;
-  align-items: flex-start;
-  gap: 12px;
-  position: relative;
-  top: 64px;
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 12px;
 `;
 
 const FloatingButtonWrapper = styled.div`
@@ -87,6 +77,29 @@ const FloatingButtonWrapper = styled.div`
     justify-content: flex-end;
 `;
 
+const ProfileContainer = styled.div`
+    height:100%;
+    display:flex;
+    flex-direction: column;
+    gap:12px;
+    justify-content: center;
+    align-items: center;
+    position:relative;
+    bottom:80px;
+`;
+const BackgroundWrapper = styled.div`
+    width: 100%;
+    height: 234px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; 
+    
+    @media (max-width: 768px) {
+        height: 234px; 
+    }
+
+`;
 
 const PostQuestionPage = () => {
   const { subjectId } = useParams();
@@ -113,15 +126,21 @@ const PostQuestionPage = () => {
     return (
         <PostContainer>
             <PostWrapper>
-                <Background src={BackgroundImg} alt="Background Image" />
+                <BackgroundWrapper>
+                    <Background src={BackgroundImg} alt="Background Image" />
+                </BackgroundWrapper>
+                
                 <Logo src={LogoImg} alt="오픈마인드 로고"/>
-                <Profile src={subject.imageSource} alt="프로필 이미지" />
-                <UserName>{subject.name}</UserName>
-                <ShareWrapper>
-                    <LinkShareButton />
-                    <KakaoShareButton />
-                    <FacebookShareButton />
-                </ShareWrapper>
+                <ProfileContainer>
+                    <Profile src={subject.imageSource} alt="프로필 이미지" />
+                    <UserName>{subject.name}</UserName>
+                    <ShareWrapper>
+                        <LinkShareButton />
+                        <KakaoShareButton subject={subject} />
+                        <FacebookShareButton />
+                    </ShareWrapper>
+                </ProfileContainer>
+                
                 <QuestionList subjectId={subjectId} />
                 <FloatingButtonWrapper >
                             <QuestionModal
