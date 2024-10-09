@@ -22,8 +22,7 @@ export const KakaoShareButton = ({ subject }) => {
       content: {
         title: '오픈마인드',
         description: `${subject.name}님의 오픈마인드입니다.`,
-        imageUrl:
-          Thumbnail,
+        imageUrl: imageUrl:subject.imgSource,
         link: {
           mobileWebUrl: `${baseUrl}${location.pathname}`,
           webUrl: `${baseUrl}${location.pathname}`,
