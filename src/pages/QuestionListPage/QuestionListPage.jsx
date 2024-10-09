@@ -3,6 +3,74 @@ import PaginationBar from "./components/pagination/PaginationBar";
 import ArrayCard from "./components/user_card/ArrayCard";
 import { useState, useEffect } from "react";
 import { getItems } from "../../IsThereAPI";
+import Title from "./components/title/Title";
+import style from "styled-components"
+import ContainHeader from "./components/header/Headers";
+
+
+
+const Wrapper = style.div`
+	display: flex;
+	flex-direction: column; /* 세로 방향으로 정렬 */
+	align-items: center; /* 수평 가운데 정렬 */
+	justify-content: center; /* 수직 가운데 정렬 (높이가 필요한 경우) */
+	width: 100%; /* 전체 너비 사용 */
+	margin-top: 20px; /* 여백 추가 (필요에 따라 조정) */
+
+	@media (max-width: 390px) {
+		margin-right: 24px;
+		margin-left: 24px;
+		width: auto;
+	}
+`;
+
+
+const TitleWrapper = style.div`
+	display: flex;
+	flex-direction: column; /* 세로 방향으로 정렬 */
+	align-items: center; /* 수평 가운데 정렬 */
+	justify-content: center; /* 수직 가운데 정렬 (높이가 필요한 경우) */
+	width: 100%; /* 전체 너비 사용 */
+	padding: 20px; /* 여백 추가 (필요에 따라 조정) */
+
+	@media (max-width: 390px) {
+		display: inline-flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		gap:42px;
+		margin-bottom: 16px;
+		padding: 0;
+	};
+`;
+
+const DropDownWrapper = style.div`
+	margin-bottom: 20px;
+	margin-top: 12px;
+	@media(max-width: 390px){
+		margin-bottom: 0;
+		margin-top: 0;
+	}
+`;
+
+
+const CardPGWrapper = style.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 40px;
+	@media (max-width: 950px) {
+		gap: 46px;
+	};
+	@media (max-width: 768px) {
+		gap: 61px;
+	};
+	@media (max-width: 390px) {
+		gap: 31px;
+	};
+`;
+
 
 //부모 컴포넌트
 function QuestionListPage() {
@@ -46,15 +114,23 @@ function QuestionListPage() {
 	}, []);
 
 	return (
-		<>
-			<DropDown />
-			<ArrayCard cardList={cardList} />
-			<PaginationBar
-				totalPageNum={totalPageNum}
-				activePageNum={page}
-				onPageChange={onPageChange}
-			/>
-		</>
+		<Wrapper>
+			<ContainHeader />
+			<TitleWrapper>
+				<Title />
+				<DropDownWrapper>
+					<DropDown />
+				</DropDownWrapper>
+			</TitleWrapper>
+			<CardPGWrapper>
+				<ArrayCard cardList={cardList} />
+				<PaginationBar
+					totalPageNum={totalPageNum}
+					activePageNum={page}
+					onPageChange={onPageChange}
+				/>
+			</CardPGWrapper>
+		</Wrapper>
 	);
 }
 

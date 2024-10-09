@@ -1,9 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
-import FeedCardQuestion from './FeedCardQuestion';
-import DefaultImg from '../assets/default/defaultProfile.svg';
-import { ThumbsDown, ThumbsUp } from './Reaction/Reaction';
-import Badge from './Badge/Badge'
+import React from "react";
+import styled from "styled-components";
+import FeedCardQuestion from "./FeedCardQuestion";
+import DefaultImg from "../assets/default/defaultProfile.svg";
+import { ThumbsDown, ThumbsUp } from "./Reaction/Reaction";
+import Badge from "./Badge/Badge";
 
 const FeedCardContainer = styled.div`
   width: 620px;
@@ -27,15 +27,15 @@ const FeedCardBox = styled.div`
 `;
 
 const FeedCardButtonWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
 `;
 
 const FeedCardAnswerContainer = styled.div`
-  width:100%;
-  display: flex;
-  gap: 12px;
+	width: 100%;
+	display: flex;
+	gap: 12px;
 `;
 
 const FeedCardUserProfile = styled.img`
@@ -50,46 +50,47 @@ const FeedCardUserProfile = styled.img`
 `;
 
 const FeedCardAnswerBox = styled.div`
-  width:100%;
-  display: flex;
-  gap: 4px;
-  flex-direction: column;
+	width: 100%;
+	display: flex;
+	gap: 4px;
+	flex-direction: column;
 `;
 const FeedCardAnswerHead = styled.div`
-  width:100%;
-  display:flex;
-  gap:8px;
-  display: flex;
+	width: 100%;
+	display: flex;
+	gap: 8px;
+	display: flex;
 `;
 const FeedCardAnswerWriter = styled.div`
-  color: var(--Grayscale-60, #000);
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 24px; 
+	color: var(--Grayscale-60, #000);
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 24px;
 
-  @media (max-width: 767px) {
-    font-size: 16px;
-  }
+	@media (max-width: 767px) {
+		font-size: 16px;
+	}
 `;
+
 const FeedCardAnswerTime = styled.div`
-  color: var(--Grayscale-40, #818181);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 18px;
-  display:flex;
-  align-items: flex-end;
+	color: var(--Grayscale-40, #818181);
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 18px;
+	display: flex;
+	align-items: flex-end;
 `;
 const FeedCardAnswerText = styled.div`
-  width:100%;
-  color: var(--Grayscale-60, #000);
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 22px; 
+	width: 100%;
+	color: var(--Grayscale-60, #000);
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 22px;
 `;
 const FeedCardLine = styled.hr`
-  height: 1px;
-  align-self: stretch;
-  background: var(--Grayscale-30, #CFCFCF);
+	height: 1px;
+	align-self: stretch;
+	background: var(--Grayscale-30, #cfcfcf);
 `;
 
 const FeedCardReactionContainer = styled.div`
@@ -100,10 +101,10 @@ const FeedCardReactionContainer = styled.div`
 `;
 
 const RejectAnswer = styled.div`
-  color: var(--Red-50, #B93333);
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 22px; 
+	color: var(--Red-50, #b93333);
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 22px;
 `;
 
 const elapsedTime = (date) => {
@@ -111,7 +112,7 @@ const elapsedTime = (date) => {
 	const end = new Date();
 
 	const seconds = Math.floor((end.getTime() - start.getTime()) / 1000);
-	if (seconds < 60) return '방금 전';
+	if (seconds < 60) return "방금 전";
 
 	const minutes = seconds / 60;
 	if (minutes < 60) return `${Math.floor(minutes)}분 전`;
@@ -124,40 +125,42 @@ const elapsedTime = (date) => {
 };
 
 const FeedCard = ({ question, subjectId }) => {
-  const answer = question.answer; 
-  return (
-    <FeedCardContainer>
-      <FeedCardBox>
-        <FeedCardButtonWrapper>
-          <Badge status={answer ? "answered" : "unanswered"} /> 
-        </FeedCardButtonWrapper>
-        <FeedCardQuestion question={question} />
-        {answer ? ( 
-          <FeedCardAnswerContainer>
-            <FeedCardUserProfile src={DefaultImg} />
-            <FeedCardAnswerBox>
-              <FeedCardAnswerHead>
-                <FeedCardAnswerWriter>{subjectId}</FeedCardAnswerWriter>
-                <FeedCardAnswerTime>{elapsedTime(answer.createdAt)}</FeedCardAnswerTime>
-              </FeedCardAnswerHead>
-              {answer.isRejected 
-              ?<RejectAnswer>답변 거절</RejectAnswer> 
-              :(<FeedCardAnswerText>
-                {answer.content}
-              </FeedCardAnswerText>) }
-            </FeedCardAnswerBox>
-          </FeedCardAnswerContainer>
-        ) : (
-          <></>
-        )}
-        <FeedCardLine />
-        <FeedCardReactionContainer>
-          <ThumbsUp question={question} />
-          <ThumbsDown question={question} />
-        </FeedCardReactionContainer>
-      </FeedCardBox>
-    </FeedCardContainer>
-  );
+	const answer = question.answer;
+	return (
+		<FeedCardContainer>
+			<FeedCardBox>
+				<FeedCardButtonWrapper>
+					<Badge status={answer ? "answered" : "unanswered"} />
+				</FeedCardButtonWrapper>
+				<FeedCardQuestion question={question} />
+				{answer ? (
+					<FeedCardAnswerContainer>
+						<FeedCardUserProfile src={DefaultImg} />
+						<FeedCardAnswerBox>
+							<FeedCardAnswerHead>
+								<FeedCardAnswerWriter>{subjectId}</FeedCardAnswerWriter>
+								<FeedCardAnswerTime>
+									{elapsedTime(answer.createdAt)}
+								</FeedCardAnswerTime>
+							</FeedCardAnswerHead>
+							{answer.isRejected ? (
+								<RejectAnswer>답변 거절</RejectAnswer>
+							) : (
+								<FeedCardAnswerText>{answer.content}</FeedCardAnswerText>
+							)}
+						</FeedCardAnswerBox>
+					</FeedCardAnswerContainer>
+				) : (
+					<></>
+				)}
+				<FeedCardLine />
+				<FeedCardReactionContainer>
+					<ThumbsUp question={question} />
+					<ThumbsDown question={question} />
+				</FeedCardReactionContainer>
+			</FeedCardBox>
+		</FeedCardContainer>
+	);
 };
 
 export default FeedCard;
