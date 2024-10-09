@@ -47,7 +47,8 @@ export const ThumbsUp = ({ question }) => {
   return (
     <div onClick={handleLike} className="reaction-button">
       <ThumbsupSVG className={`reaction-icon ${like ? "liked" : ""}`} />
-      <span className={`reaction-icon ${like ? "liked" : ""}`}>
+      <span className={`reaction-icon ${like ? "liked" : ""}`}
+      style={{ fontSize: "14px" }} >
         좋아요 {likeCount}
       </span>
     </div>
@@ -94,7 +95,8 @@ export const ThumbsDown = ({ question }) => {
   return (
     <div onClick={handleDislike} className="reaction-button">
       <ThumbsdownSVG className={`reaction-icon ${dislike ? "disliked" : ""}`} />
-      <span className={`reaction-icon ${dislike ? "disliked" : ""}`}>
+      <span className={`reaction-icon ${dislike ? "disliked" : ""}`}
+      style={{ fontSize: "14px" }} >
         싫어요 {dislikeCount}
       </span>
     </div>

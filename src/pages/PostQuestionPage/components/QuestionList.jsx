@@ -8,7 +8,6 @@ import NoQuestionImg from '../../../assets/default/question_empty_logo.png';
 const QuestionListContainer = styled.div`
     width: 684px;
     height: 100%;
-    margin-top: 106px;
     display: inline-flex;
     padding: 16px;
     flex-direction: column;
@@ -17,6 +16,9 @@ const QuestionListContainer = styled.div`
     border-radius: 16px;
     border: 1px solid var(--Brown-30, #C7BBB5);
     background: var(--Brown-10, #F5F1EE);
+    @media (max-width:375px){
+        width: 295px;
+    }
 `;
 
 const QuestionCountContainer = styled.div`

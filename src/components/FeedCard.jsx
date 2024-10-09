@@ -11,6 +11,9 @@ const FeedCardContainer = styled.div`
   border-radius: 16px;
   background: var(--Grayscale-10, #FFF);
   box-shadow: var(--box-shadow-1px);
+  @media (max-width:375px){
+        width: 247px;
+    }
 `;
 
 const FeedCardBox = styled.div`
@@ -18,6 +21,9 @@ const FeedCardBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
+  @media (max-width:375px){
+        gap:24px;
+    }
 `;
 
 const FeedCardButtonWrapper = styled.div`
@@ -37,6 +43,10 @@ const FeedCardUserProfile = styled.img`
   height: 48px;
   flex-shrink: 0;
   border-radius: 48px;
+  @media (max-width:375px){
+    width: 32px;
+    height: 32px;
+    }
 `;
 
 const FeedCardAnswerBox = styled.div`
@@ -83,6 +93,7 @@ const FeedCardLine = styled.hr`
 `;
 
 const FeedCardReactionContainer = styled.div`
+  width:100%;
   display: flex;
   align-items: flex-start;
   gap: 32px;
