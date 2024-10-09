@@ -4,6 +4,7 @@ import { ReactComponent as KakaoSVG } from "../../assets/buttonshare/Type=Kakao.
 import { ReactComponent as FacebookSVG } from "../../assets/buttonshare/Type=Facebook.svg";
 import { ReactComponent as LinkSVG } from "../../assets/buttonshare/Type=Link.svg";
 import Thumbnail from '../../assets/default/drawing.png';
+import { Helmet } from 'react-helmet'; 
 import "./Button.css";
 import "./Toast.css";
 
@@ -40,7 +41,7 @@ export const KakaoShareButton = ({ subject }) => {
   );
 };
 
-export const FacebookShareButton = () => {
+export const FacebookShareButton = ({ subject }) => {
   const location = useLocation();
   const baseUrl = "https://openmind-10-1.netlify.app" 
   const handleFacebookShare = () => {
@@ -49,11 +50,22 @@ export const FacebookShareButton = () => {
       href: `${baseUrl}${location.pathname}`,
     });
   };
-
+  
   return (
-    <button onClick={handleFacebookShare}>
+    <>
+      <button onClick={handleFacebookShare}>
       <FacebookSVG />
     </button>
+    <Helmet>
+      <meta property="og:title" content={`오픈마인드: ${subject.name}`} />
+      <meta property="og:description" content={`${subject.name}님의 오픈마인드입니다.`} />
+      <meta property="og:image" content={subject.imageSource || Thumbnail} />
+      <meta property="og:url" content={`${baseUrl}${window.location.pathname}`} />
+      <meta property="og:type" content="website" />
+      <title>오픈마인드: {subject.name}</title>
+    </Helmet>
+    </>
+    
   );
 };
 
