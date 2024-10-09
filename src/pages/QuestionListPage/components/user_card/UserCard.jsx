@@ -1,4 +1,3 @@
-// import { ReactComponent as DefaultProfile } from "../../../../assets/default/defaultProfile.svg";
 import styled from "styled-components";
 import { ReactComponent as MessagesSVG } from "../../../../assets/icon/Messages.svg";
 
@@ -18,29 +17,25 @@ const UserCardBox = styled.div`
 		width: 186px;
 		height: 187px;
 		padding: 20px;
-		flex-direction: column;
 		justify-content: space-between;
 		align-items: flex-start;
-		flex: 1 0 0;
-  }
+  };
 	@media (max-width: 768px) {
 		display: flex;
 		width: 220px;
 		height: 187px;
 		padding: 20px;
-		flex-direction: column;
 		justify-content: space-between;
 		align-items: flex-start;
-	}
-	@media (max-width:375px) {
+	};
+	@media (max-width:390px) {
     display: flex;
 		width: 155.5px;
 		padding: 16px;
-		flex-direction: column;
 		justify-content: space-between;
 		align-items: flex-start;
 		align-self: stretch;
-  }
+  };
 `;
 
 // Profile // Photo 부분 - 이미지 이클립스 wrapper 의 부모 로 존재
@@ -111,7 +106,6 @@ const CombinedUserCard = ({ id, name, imageSource, questionCount }) => {
 			<div>
 				<UserCardBox>
 					<ProfileImage>
-						{/* <DefaultProfile /> */}
 						<ImageWrapper $imageUrl={imageSource} />
 					</ProfileImage>
 					<NickName>{name}</NickName>
