@@ -66,12 +66,12 @@ function QuestionList( { subjectId } ) {
         }
     }, [page, limit]); 
 
-    const handleObserver = (entries) => {
+    const handleObserver = useCallback((entries) => {
         const target = entries[0];
         if(target.isIntersecting && !isLoading){
             setPage((prevPage) => prevPage + 1);
         }
-    };
+    },[isLoading]);
     useEffect(() => {
         const observer = new IntersectionObserver(handleObserver, {
             threshold: 0, 
@@ -87,7 +87,7 @@ function QuestionList( { subjectId } ) {
                 observer.unobserve(observerTarget);
             }
         };
-    }, []);
+    }, [handleObserver]);
 
     useEffect(() => {
         fetchSortedData(); 

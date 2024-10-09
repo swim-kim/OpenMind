@@ -6,15 +6,15 @@ import PostQuestionPage from "./pages/PostQuestionPage/PostQuestionPage";
 import QuestionModal from "./components/QuestionModal";
 
 function Router() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/feedCard" element={<FeedCard />} />
-        <Route path="/list" element={<QuestionListPage />} />
-        <Route path="/post/:subjectId" element={<PostQuestionPage />} />
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route path="/list" element={<QuestionListPage />} />
+				<Route path="/post/:subjectId" element={<PostQuestionPage />} />
         <Route path="/post/:subjectId/questions" element={<QuestionModal />} />
-      </Routes>
-    </BrowserRouter>
-  );
-}
+			</Routes>
+		</BrowserRouter>
+	);
+
+} 
 export default Router;

@@ -14,22 +14,32 @@ import { getSubject } from "../../api/swagger/Subject";
 import QuestionModal from "../../components/QuestionModal";
 
 const PostContainer = styled.div`
-  max-width: 100%;
-  display: flex;
-  justify-content: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
 `;
 
 const PostWrapper = styled.div`
-  max-width: 1200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    max-width: 1200px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    @media (max-width:768px){
+        max-width: 768px;
+    }
 `;
 
 const Background = styled.img`
-  width: 100%;
-  height: auto;
+    width: 100%;
+    height: auto;
+    @media (max-width:768px){
+        width:1200px;
+        object-fit:cover;
+        overflow:hidden;
+    }
 `;
 
 const Logo = styled.img`
@@ -70,6 +80,14 @@ const ShareWrapper = styled.div`
   top: 64px;
 `;
 
+const FloatingButtonWrapper = styled.div`
+    width:100%;
+    margin-top :58px;
+    display:flex;
+    justify-content: flex-end;
+`;
+
+
 const PostQuestionPage = () => {
   const { subjectId } = useParams();
   const [subject, setSubject] = useState([]);
@@ -80,7 +98,6 @@ const PostQuestionPage = () => {
     try {
       setLoading(true);
       const response = await getSubject(subjectId);
-
       setSubject(response);
     } catch (err) {
       setError(err);
@@ -93,27 +110,30 @@ const PostQuestionPage = () => {
     fetchSortedData();
   }, [fetchSortedData]);
 
-  return (
-    <PostContainer>
-      <PostWrapper>
-        <Background src={BackgroundImg} alt="Background Image" />
-        <Logo src={LogoImg} alt="오픈마인드 로고" />
-        <Profile src={subject.imageSource} alt="프로필 이미지" />
-        <UserName>{subject.name}</UserName>
-        <ShareWrapper>
-          <LinkShareButton />
-          <KakaoShareButton />
-          <FacebookShareButton />
-        </ShareWrapper>
-        <QuestionList subjectId={subjectId} />
-        <QuestionModal
-          subjectId={subjectId}
-          imageSource={subject.imageSource}
-          name={subject.name}
-        />
-      </PostWrapper>
-    </PostContainer>
-  );
+    return (
+        <PostContainer>
+            <PostWrapper>
+                <Background src={BackgroundImg} alt="Background Image" />
+                <Logo src={LogoImg} alt="오픈마인드 로고"/>
+                <Profile src={subject.imageSource} alt="프로필 이미지" />
+                <UserName>{subject.name}</UserName>
+                <ShareWrapper>
+                    <LinkShareButton />
+                    <KakaoShareButton />
+                    <FacebookShareButton />
+                </ShareWrapper>
+                <QuestionList subjectId={subjectId} />
+                <FloatingButtonWrapper >
+                            <QuestionModal
+                              subjectId={subjectId}
+                              imageSource={subject.imageSource}
+                              name={subject.name}
+                            />
+                </FloatingButtonWrapper>
+                
+            </PostWrapper>
+        </PostContainer>
+    );
 };
 
 export default PostQuestionPage;
