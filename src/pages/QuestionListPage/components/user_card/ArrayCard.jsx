@@ -13,6 +13,7 @@ const ArrayCardLine = styled.div`
     align-items: flex-start;
     gap: 20px;
   }
+  @media (max-width:390px) {
   @media (max-width:375px) {
     width: 327px;
     display: inline-flex;
@@ -26,7 +27,7 @@ const ArrayContainer = styled.div`
 	width: 940px;
 	height: auto;
   @media (max-width:768px) {
-    width: 700px;
+    width: auto;
   }
 
 `;
@@ -36,7 +37,6 @@ const ArrayContainer = styled.div`
 // 유즈 스테이스 쓰고, mockArray 초기값주고, 유즈이펙트+api 부분은 나중에 구현하고
 // 유즈이펙트 쓰고 해서 api 결과 받으면 8개 들어있는 배열 받을것임
 // useState에 업데이트해서 하위 컴포넌트들 리렌더링 시키면서 카드 보여줄것
-
 //useEffect로 api의 값을 useState의 세터로 가져온다.
 const ArrayCard = ({ cardList }) => {
 	// const { id } = useParams();
