@@ -10,7 +10,7 @@ function Router() {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path="/" element={<QuestionListPage />} />
+				
 				<Route path="/list" element={<QuestionListPage />} />
 				<Route path="/post/:subjectId" element={<PostQuestionPage />} />
 				<Route path="/post/answer" element={<PostAnswerPage />} />
