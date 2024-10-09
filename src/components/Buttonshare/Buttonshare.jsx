@@ -7,7 +7,7 @@ import Thumbnail from '../../assets/default/drawing.png';
 import "./Button.css";
 import "./Toast.css";
 
-export const KakaoShareButton = () => {
+export const KakaoShareButton = ({ subject }) => {
   const location = useLocation();
   const baseUrl = "https://openmind-10-1.netlify.app" 
   useEffect(() => {
