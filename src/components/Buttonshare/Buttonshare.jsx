@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { ReactComponent as KakaoSVG } from "../../assets/buttonshare/Type=Kakao.svg";
 import { ReactComponent as FacebookSVG } from "../../assets/buttonshare/Type=Facebook.svg";
 import { ReactComponent as LinkSVG } from "../../assets/buttonshare/Type=Link.svg";
-import Thumbnail from '../../assets/default/logo.svg';
+import Thumbnail from '../../assets/default/drawing.png';
 import "./Button.css";
 import "./Toast.css";
 
