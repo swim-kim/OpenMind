@@ -46,7 +46,7 @@ export const FacebookShareButton = ({ subject }) => {
   const baseUrl = "https://openmind-10-1.netlify.app" 
   const handleFacebookShare = () => {
     window.FB.ui({
-      method: "share",
+      method: 'share',
       href: `${baseUrl}${location.pathname}`,
     });
   };
@@ -62,7 +62,7 @@ export const FacebookShareButton = ({ subject }) => {
       <meta property="og:image" content={subject.imageSource || Thumbnail} />
       <meta property="og:url" content={`${baseUrl}${window.location.pathname}`} />
       <meta property="og:type" content="website" />
-      <title>오픈마인드: {subject.name}</title>
+      <title>{`오픈마인드: ${subject.name}`}</title>
     </Helmet>
     </>
     
