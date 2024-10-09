@@ -17,18 +17,20 @@ export const KakaoShareButton = ({ subject }) => {
   }, []);
 
   const handleKakaoShare = () => {
+    console.log(subject);
     window.Kakao.Link.sendDefault({
       objectType: "feed",
       content: {
         title: '오픈마인드',
         description: `${subject.name}님의 오픈마인드입니다.`,
-        imageUrl: imageUrl:subject.imgSource,
+        imageUrl:subject.imageSource,
         link: {
           mobileWebUrl: `${baseUrl}${location.pathname}`,
           webUrl: `${baseUrl}${location.pathname}`,
         },
       },
     });
+    
   };
 
   return (
