@@ -17,7 +17,10 @@ function Router() {
 				<Route path="/" element={<Main />} />
 				<Route path="/list" element={<QuestionListPage />} />
 				<Route path="/post/:subjectId" element={<PostQuestionPage />} />
-				<Route path="/post/answer" element={<PostAnswerPage />} />
+				{/* 메인페이지에서 라우팅 */}
+				<Route path="/post/answer/WriteAnswer" element={<PostAnswerPage />} />
+				{/* 리스트페이지에서 라우팅 */}
+				<Route path="/post/:subjectId/answer" element={<PostAnswerPage />} />
 				<Route path="/post/:subjectId/questions" element={<QuestionModal />} />
 			</Routes>
 		</BrowserRouter>

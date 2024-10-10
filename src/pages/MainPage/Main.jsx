@@ -34,7 +34,10 @@ const Main = () => {
 		try {
 			const res = await subjects_create(team, name);
 			if (res !== null && res !== undefined) {
-				LocalStore.setItem("subject", JSON.stringify(res));
+				/* 윗줄 subjects_create함수에서 JSON.stringify하고 있음
+					 LocalStore.setItem("subject", JSON.stringify(res));
+				*/
+				LocalStore.setItem("subject", res);
 				setSubject(res);
 				console.log(res);
 				return res;
