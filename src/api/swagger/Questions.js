@@ -94,14 +94,7 @@ const questions_reaction_create = async (id, reactionType) => {
 };
 
 /**
- * Sends a POST request to the API to add an answer to the specified question.
- * POST /{team}/questions/{question_id}/answers/
- * -d '{
- *      "questionId": 0,
- *      "content": "string",
- *      "isRejected": true,
- *      "team": "string"
- * }'
+
  *
  * @param {number} questionId - The unique identifier of the question to answer.
  * @param {string} content - The content of the answer.
