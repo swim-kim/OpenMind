@@ -1,8 +1,5 @@
 import axios from 'axios';
-
 import LocalStorage from '../storage/LocalStorage';
-
-
 
 /**
  * Fetches a list of subjects from the OpenMind API for the specified team, with optional pagination.
@@ -27,7 +24,7 @@ import LocalStorage from '../storage/LocalStorage';
  * }
  * @throws {Error} - If there is an error fetching the subjects.
  */
-
+const subjects_list = async (team, offset = 0, limit = 10) => {
   const URL = `https://openmind-api.vercel.app/${team}/subjects/?limit=${limit}&offset=${offset}`;
 
   try {
@@ -77,7 +74,7 @@ import LocalStorage from '../storage/LocalStorage';
  * @throws {Error} - If there is an error creating the subject.
  */
 
-
+const subjects_create = async (team, name) => {
   const URL = `https://openmind-api.vercel.app/${team}/subjects/`
 
   try {
@@ -126,7 +123,7 @@ import LocalStorage from '../storage/LocalStorage';
  * }
  * @throws {Error} - If there is an error querying the subject.
  */
-
+const subjects_read = async (team, id) => {
   const URL = `https://openmind-api.vercel.app/${team}/subjects/${id}/`
 
   try {
@@ -163,7 +160,7 @@ import LocalStorage from '../storage/LocalStorage';
  * @returns {Promise<Object>} - The res data from the delete request.
  * @throws {Error} - If there is an error deleting the subject.
  */
-
+const subjects_delete = async (team, id) => {
   const URL = `https://openmind-api.vercel.app/${team}/subjects/${id}/`
 
   try {
@@ -214,7 +211,7 @@ import LocalStorage from '../storage/LocalStorage';
  * }
  * @throws {Error} - If there is an error querying the subject questions.
  */
-
+const subjects_questions_list = async (team, id, limit = 10, offset = 0) => {
   const URL = `https://openmind-api.vercel.app/${team}/subjects/${id}/questions/?limit=${limit}&offset=${offset}`
   const storageKey = `subject_${id}_questions`
 
@@ -282,7 +279,7 @@ import LocalStorage from '../storage/LocalStorage';
  *  }
  * @throws {Error} - If there is an error creating the subject question.
  */
-
+const subjects_questions_create = async (team, id, questionData) => {
   const URL = `https://openmind-api.vercel.app/${team}/subjects/${id}/questions/`
   const storageKey = `subject_${id}_questions`
 
@@ -314,4 +311,11 @@ import LocalStorage from '../storage/LocalStorage';
   }
 }
 
-
+export {
+  subjects_list,
+  subjects_create,
+  subjects_read,
+  subjects_delete,
+  subjects_questions_list,
+  subjects_questions_create,
+}
