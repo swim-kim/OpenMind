@@ -23,31 +23,31 @@ const StyleBox = style.div`
     align-items: center;
 	};
 	`;
-	
-	// 로컬 스토리지에서 가져온다 값을
-	// id부분은 `${id}`이런식으로 리터럴 문법을 쓴다.
-	// /post/{id}/answer
+
+// 로컬 스토리지에서 가져온다 값을
+// id부분은 `${id}`이런식으로 리터럴 문법을 쓴다.
+// /post/{id}/answer
 const ContainHeader = () => {
 	const handleTo = () => {
 		const subject = LocalStore.getItem("subject");
 
 
-	  // subject가 null 또는 undefined인 경우 홈으로 이동
-		if(!subject) {
+		// subject가 null 또는 undefined인 경우 홈으로 이동
+		if (!subject) {
 			handleToHome();
 		}
 
 
-	let parsedSubject;
-  try {
-    parsedSubject = JSON.parse(subject); // JSON 파싱 시도
-  } catch (error) {
-    console.error("JSON 파싱 오류:", error);
-    handleToHome(); // 파싱 오류가 발생하면 홈으로 이동
-    return; // 함수 종료
-  } finally {
-		window.location.href = `/post/${parsedSubject.id}/answer`
-	}
+		let parsedSubject;
+		try {
+			parsedSubject = JSON.parse(subject); // JSON 파싱 시도
+		} catch (error) {
+			console.error("JSON 파싱 오류:", error);
+			handleToHome(); // 파싱 오류가 발생하면 홈으로 이동
+			return; // 함수 종료
+		} finally {
+			window.location.href = `/post/${parsedSubject.id}/answer`
+		}
 	};
 	const handleToHome = () => {
 		window.location.href = "/";

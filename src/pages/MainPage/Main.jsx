@@ -21,7 +21,10 @@ const Main = () => {
 	const navigate = useNavigate();
 
 	const [subject, setSubject] = useState(
-		JSON.parse(LocalStore.getItem("subject"))
+		/* LocalStore.getItem함수에서 JSON.parse를 하고 있음
+				 JSON.parse(LocalStore.getItem("subject"))
+		*/
+		LocalStore.getItem("subject")
 	);
 	const [name, setName] = useState("");
 	const [team] = useState("10-1");
