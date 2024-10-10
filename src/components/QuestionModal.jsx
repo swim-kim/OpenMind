@@ -92,7 +92,7 @@ const UserInformation = ({ name, imageSource }) => {
   );
 };
 
-const QuestionModal = ({ name, imageSource }) => {
+const QuestionModal = ({ name, imageSource, onQuestionAdded }) => {
   const { subjectId: subjectid } = useParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [questionText, setQuestionText] = useState("");
@@ -138,6 +138,7 @@ const QuestionModal = ({ name, imageSource }) => {
       console.log("질문이 전송되었습니다.", result);
 
       closeModal();
+      onQuestionAdded();
     } catch (error) {
       console.error("질문 전송에 실패하였습니다:", error);
       alert(`질문 전송에 실패하였습니다: ${error.message}`);
