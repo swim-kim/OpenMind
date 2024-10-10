@@ -2,6 +2,7 @@ import { ReactComponent as DefaultLogo } from "../../../../assets/default/defaul
 import style from "styled-components";
 import CustomButton from "../../../../components/CustomButton";
 import LocalStore from "../../../../api/storage/LocalStore";
+import { useNavigate } from "react-router-dom";
 
 const StyleBox = style.div`
   display: flex;
@@ -28,30 +29,20 @@ const StyleBox = style.div`
 // id부분은 `${id}`이런식으로 리터럴 문법을 쓴다.
 // /post/{id}/answer
 const ContainHeader = () => {
+	const navigate = useNavigate();
 	const handleTo = () => {
-		const subjectKey = "subject_${id}_questions";
-		const subject = LocalStore.getItem(subjectKey);
+		const subject = LocalStore.getItem("subject");
+		const subjectId = subject.id;
+		const idGet = LocalStore.getItem(`subject_${subjectId}_questions`);
 
-		console.log(subject);
-
-		// subject가 null 또는 undefined인 경우 홈으로 이동
-		if (!subject) {
+		if (!idGet) {
 			handleToHome();
+			return;
 		}
-
-		let parsedSubject;
-		try {
-			parsedSubject = JSON.parse(subject); // JSON 파싱 시도
-		} catch (error) {
-			console.error("JSON 파싱 오류:", error);
-			handleToHome(); // 파싱 오류가 발생하면 홈으로 이동
-			return; // 함수 종료
-		} finally {
-			window.location.href = `/post/${parsedSubject.id}/answer`;
-		}
+		navigate(`/post/${subjectId}/answer`);
 	};
 	const handleToHome = () => {
-		window.location.href = "/";
+		navigate("/");
 	};
 	return (
 		<>
