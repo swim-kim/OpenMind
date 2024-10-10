@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { StyledMoreIcon, KebabButtonWrapper, MenuModal } from './KebabButton.styles';
 
-const KebabButton = ({ menuItems }) => {
+const KebabButton = ({ menuItems, question }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
 
@@ -34,7 +34,7 @@ const KebabButton = ({ menuItems }) => {
           {menuItems.map((item, index) => (
             <li
               key={`${item.label}-${index}`}
-              onClick={() => onMenuItemClick(item.onClick)}
+              onClick={() => onMenuItemClick(() => item.onClick(question))}
             >
               <img src={`${item.icon}`} width={'16px'} height={'16px'} alt={item.label} />
               {item.label}

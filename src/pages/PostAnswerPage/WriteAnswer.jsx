@@ -89,27 +89,24 @@ const WriteAnswer = () => {
   const [inputTextValue, setInputTextValue] = useState('')
   const [question, setQuestion] = useState(null);
 
-  //TODO: 케밥메뉴 버튼 클릭 시 현재 quistion ID를 얻어야 한다. 어떻케???
-  const handleKebabEditMenuClick = () => {
-    console.log('수정하기 클릭', question?.id);
-    console.log('수정하기 클릭', question?.id);
+  //TODO: 케밥메뉴 버튼 클릭 시 현재 quistion ID를 얻어야 한다.
+  const handleKebabEditMenuClick = (question) => {
+    console.log('수정하기 클릭', question);
   };
 
-  const handleKebabDeleteMenuClick = () => {
-    console.log('삭제하기 클릭')
+  const handleKebabDeleteMenuClick = (question) => {
+    console.log('삭제하기 클릭', question);
   };
 
   const kebabMenuItems = [
     {
       label: '수정하기',
       icon: iconEdit,
-      question: null,
       onClick: handleKebabEditMenuClick,
     },
     {
       label: '삭제하기',
       icon: iconDelete,
-      question: null,
       onClick: handleKebabDeleteMenuClick,
     },
   ];
@@ -194,7 +191,7 @@ const WriteAnswer = () => {
             <FeedCard key={question?.id}>
               <FeedCardHeader>
                 <Badge>미답변</Badge>
-                <KebabButton ref={question} menuItems={kebabMenuItems} />
+                <KebabButton menuItems={kebabMenuItems} question={question} />
               </FeedCardHeader>
               <QuestionHeader>
                 <span style={{ fontFamily: 'Pretendard', fontWeight: 500, fontSize: '14px', color: '#818181' }}>
@@ -240,7 +237,7 @@ const WriteAnswer = () => {
             <FeedCard key={question?.id}>
               <FeedCardHeader>
                 <Badge>답변 완료</Badge>
-                <KebabButton menuItems={kebabMenuItems} />
+                <KebabButton menuItems={kebabMenuItems} question={question} />
               </FeedCardHeader>
               <QuestionHeader>
                 <span style={{ fontFamily: 'Pretendard', fontWeight: 500, fontSize: '14px', color: '#818181' }}>
