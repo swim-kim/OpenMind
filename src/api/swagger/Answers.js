@@ -3,18 +3,6 @@ import axios from 'axios';
 const team = '10-1';
 
 /**
- * Represents the properties of a new answer to be created.
- * const _AnswerCreate = {
- *   id,				    //integer, readOnly: true
- *   questionId,		//*integer
- *   content,		    //*string, minLength: 1
- *   isRejected,		//*boolean
- *   createdAt,		  //string($date-time), readOnly: true
- *   team,			    //*string, minLength: 1
- * }
- */
-
-/**
  * Fetches an answer from the API by its ID.
  * GET /{team}/answers/{id}/
  *

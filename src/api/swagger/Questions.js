@@ -2,38 +2,6 @@ import axios from 'axios';
 
 const team = '10-1';
 
-/** _AnswerRetrieveUpdate
- * Represents the structure of an answer that can be retrieved and updated.
- * const _AnswerRetrieveUpdate = {
- *   id,				    //integer, readOnly: true
- *   questionId,		//integer. readOnly: true
- *   content,		  //*string, minLength: 1
- *   isRejected,		//*boolean
- *   createdAt,		//string($date-time), readOnly: true
- * }
- */
-
-/** _Question
- * Represents the structure of a question that can be retrieved and updated.
- * const _Question = [{
- *   id,				    //integer, readOnly: true
- *   subjectId,		//*integer
- *   content,		  //*string, minLength: 1
- *   like,			    //integer, maximum: 2147483647, minimum: -2147483648
- *   dislike,		  //integer, maximum: 2147483647, minimum: -2147483648
- *   createdAt,		//string($date-time), readOnly: true
- *   team,			    //*string, minLength: 1
- *   answer,	      //_AnswerRetrieveUpdate
- * }]
- */
-
-/** _Reaction
- * Represents the structure of a reaction that can be associated with a question.
- * const _Reaction = {
- *   type, 			//*string, Enum: Array [ like, dislike ]
- * }
- */
-
 /**
  * Retrieves a question from the API based on the provided ID.
  * GET /{team}/questions/{id}/
