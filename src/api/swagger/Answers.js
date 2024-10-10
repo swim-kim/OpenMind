@@ -10,7 +10,7 @@ const team = '10-1';
  * @returns {Promise<Object>} - The fetched answer object.
  * @throws {Error} - If there is an error fetching the answer.
  */
-
+const answers_read = async (id) => {
   try {
     const response = await axios.get(`https://openmind-api.vercel.app/${team}/answers/${id}/`, {
       headers: {
@@ -45,7 +45,7 @@ const team = '10-1';
  * @returns {Promise<Object>} - The updated answer object.
  * @throws {Error} - If there is an error updating the answer.
  */
-
+const answers_update = async (id, content, isRejected) => {
   try {
     const response = await axios.put(`https://openmind-api.vercel.app/${team}/answers/${id}/`, {
       content,
@@ -84,7 +84,7 @@ const team = '10-1';
  * @returns {Promise<Object>} - The updated answer object.
  * @throws {Error} - If there is an error updating the answer.
  */
-
+const answers_partial_update = async (id, content, isRejected) => {
   try {
     const response = await axios.patch(`https://openmind-api.vercel.app/${team}/answers/${id}/`, {
       content,
@@ -117,7 +117,7 @@ const team = '10-1';
  * @returns {Promise<boolean>} - True if the answer was successfully deleted, false otherwise.
  * @throws {Error} - If there is an error deleting the answer.
  */
-
+const answers_delete = async (id) => {
   try {
     const response = await axios.delete(`https://openmind-api.vercel.app/${team}/answers/${id}/`, {
       headers: {
@@ -137,4 +137,9 @@ const team = '10-1';
   }
 };
 
-
+export {
+  answers_read,
+  answers_update,
+  answers_partial_update,
+  answers_delete
+};
