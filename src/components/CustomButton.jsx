@@ -147,7 +147,7 @@ const StyledButton = styled.button`
           return "532px";
         case "goToReply":
         case "askQuestion":
-          return "166px";
+          return "168px";
         case "getQuestion":
         default:
           return "336px";
@@ -173,7 +173,7 @@ const StyledButton = styled.button`
           return "532px";
         case "goToReply":
         case "askQuestion":
-          return "166px";
+          return "168px";
         case "getQuestion":
         default:
           return "336px";
