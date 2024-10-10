@@ -22,7 +22,7 @@ const Main = () => {
 
 	const [subject, setSubject] = useState(
 		/* LocalStore.getItem함수에서 JSON.parse를 하고 있음
-				 JSON.parse(LocalStore.getItem("subject"))
+				JSON.parse(LocalStore.getItem("subject"))
 		*/
 		LocalStore.getItem("subject")
 	);
@@ -38,7 +38,7 @@ const Main = () => {
 			const res = await subjects_create(team, name);
 			if (res !== null && res !== undefined) {
 				/* 윗줄 subjects_create함수에서 JSON.stringify하고 있음
-					 LocalStore.setItem("subject", JSON.stringify(res));
+					LocalStore.setItem("subject", JSON.stringify(res));
 				*/
 				LocalStore.setItem("subject", res);
 				setSubject(res);
@@ -71,7 +71,7 @@ const Main = () => {
 
 	return (
 		<Container>
-			<DefaultLogo />
+			<DefaultLogo width="456px" height="180px"  />
 			<FormContainer>
 				<InputContainer>
 					<PersonIconSVG />
@@ -91,7 +91,7 @@ const Main = () => {
 				질문하러 가기
 				<ArrowRightIconSVG />
 			</GoToQuestionsButton>
-			<BackgroundSVG />
+			<BackgroundSVG width="1200px" />
 		</Container>
 	);
 };

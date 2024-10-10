@@ -18,7 +18,7 @@ const Container = styled.div`
 
 const Logo = styled.img`
   width: 456px;
-  height: 180px;
+  height: 186px;
   margin-top: 20px;
 `;
 
@@ -36,7 +36,6 @@ const FormContainer = styled.div`
   flex-direction: column;
   gap: 10px;
   padding: 32px;
-  background: #ffffff;
   border-radius: 16px;
   align-items: center;
   margin-top: 20px;
