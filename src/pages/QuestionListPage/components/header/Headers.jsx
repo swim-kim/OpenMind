@@ -29,14 +29,15 @@ const StyleBox = style.div`
 // /post/{id}/answer
 const ContainHeader = () => {
 	const handleTo = () => {
-		const subject = LocalStore.getItem("subject");
+		const subjectKey = "subject_${id}_questions";
+		const subject = LocalStore.getItem(subjectKey);
 
+		console.log(subject);
 
 		// subject가 null 또는 undefined인 경우 홈으로 이동
 		if (!subject) {
 			handleToHome();
 		}
-
 
 		let parsedSubject;
 		try {
@@ -46,7 +47,7 @@ const ContainHeader = () => {
 			handleToHome(); // 파싱 오류가 발생하면 홈으로 이동
 			return; // 함수 종료
 		} finally {
-			window.location.href = `/post/${parsedSubject.id}/answer`
+			window.location.href = `/post/${parsedSubject.id}/answer`;
 		}
 	};
 	const handleToHome = () => {
