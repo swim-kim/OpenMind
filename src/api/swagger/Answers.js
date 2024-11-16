@@ -3,18 +3,6 @@ import axios from 'axios';
 const team = '10-1';
 
 /**
- * Represents the properties of a new answer to be created.
- * const _AnswerCreate = {
- *   id,				    //integer, readOnly: true
- *   questionId,		//*integer
- *   content,		    //*string, minLength: 1
- *   isRejected,		//*boolean
- *   createdAt,		  //string($date-time), readOnly: true
- *   team,			    //*string, minLength: 1
- * }
- */
-
-/**
  * Fetches an answer from the API by its ID.
  * GET /{team}/answers/{id}/
  *
@@ -22,7 +10,7 @@ const team = '10-1';
  * @returns {Promise<Object>} - The fetched answer object.
  * @throws {Error} - If there is an error fetching the answer.
  */
-const getAnswer = async (id) => {
+const answers_read = async (id) => {
   try {
     const response = await axios.get(`https://openmind-api.vercel.app/${team}/answers/${id}/`, {
       headers: {
@@ -57,7 +45,7 @@ const getAnswer = async (id) => {
  * @returns {Promise<Object>} - The updated answer object.
  * @throws {Error} - If there is an error updating the answer.
  */
-const updateAnswer = async (id, content, isRejected) => {
+const answers_update = async (id, content, isRejected) => {
   try {
     const response = await axios.put(`https://openmind-api.vercel.app/${team}/answers/${id}/`, {
       content,
@@ -96,7 +84,7 @@ const updateAnswer = async (id, content, isRejected) => {
  * @returns {Promise<Object>} - The updated answer object.
  * @throws {Error} - If there is an error updating the answer.
  */
-const patchAnswer = async (id, content, isRejected) => {
+const answers_partial_update = async (id, content, isRejected) => {
   try {
     const response = await axios.patch(`https://openmind-api.vercel.app/${team}/answers/${id}/`, {
       content,
@@ -129,7 +117,7 @@ const patchAnswer = async (id, content, isRejected) => {
  * @returns {Promise<boolean>} - True if the answer was successfully deleted, false otherwise.
  * @throws {Error} - If there is an error deleting the answer.
  */
-const deleteAnswer = async (id) => {
+const answers_delete = async (id) => {
   try {
     const response = await axios.delete(`https://openmind-api.vercel.app/${team}/answers/${id}/`, {
       headers: {
@@ -149,4 +137,9 @@ const deleteAnswer = async (id) => {
   }
 };
 
-export { getAnswer, updateAnswer, patchAnswer, deleteAnswer };
+export {
+  answers_read,
+  answers_update,
+  answers_partial_update,
+  answers_delete
+};
